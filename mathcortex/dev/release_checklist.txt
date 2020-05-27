@@ -1,0 +1,8 @@
+update documents
+	function helps
+remove developer html components (buttons etc)
+check .min.js
+check functionality and do unit tests on firefox, chrome, ie8
+check plot, tableview on ff, chrome, ie8
+check google analytics is eneabled
+login.php change localhost:8080 to mathcortex.com

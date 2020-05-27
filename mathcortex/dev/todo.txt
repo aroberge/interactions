@@ -1,0 +1,159 @@
+module system
+function wiki: page design, community page, gamification, user functions in web, watchs, sitemap.xml
+marketing adwords, seo, forums, ios app?, reddit, mail-list, profs(mails), kickstarter, links(sylvester, mathpuzzle), stackoverflow, wikipedia, signal lecturers
+matrix concat(resizible matrix)
+
+minor things: rearrange examples, iOs tab system gliches
+multiassignment rvalue
+support for standalone app(js lib?) and traditional command line compiler, c interface
+function delegates produces asm_func_dispundefined() :  function f() {   return [4]; } g = f; disp(g()); 
+web page improvements: autocomplete functions, resizable/popup windows, unite command and output win, demos(cloth,water html5, custom page with update), ipad keypad for math, +remove dependency from kickstart js, +tables for variables,  web worker(can be used for main computation for responsive ui), decrease loading time(partially done, google pagespeed),+new better web page
+more standart lib functions (+clear), -typeof, +clc, +close, +tic, +toc, imfilter, exit, +im2bw, +error, +imshow, +imread, +matrix slice( ':'), +ones, +linspace, +linsolve, +eig, ?+LU,+svd, +cholesky, solveQP, solveLP, QR, pinv, fft, splines, plot/html5 canvas functions, ODE(numeric.dolpi) ,+multi return values
+user defined functions : assignment_copy_needed(+finished except for user functions), user multi return, overloading by param count, default parameters, void return, javascript funcs?(may compromise cross compatibility)
+check assigning values to keywords and consts etc.
+control structs/flow control more : switch, for, break, +else, foreach(map)
+blocks without { } for if, while, etc
+make boundary check optional
+more tests, error tests
+var export import (json cvs?)
+backup/restore of directory
+more ops ++,--, +=, -=,*=,/=, \, ', matrix real Logical Operators
+new types : vector?, string(supported but little operations, string + op for matrix and real), complex, void
+directory: 
+	folder ops: delete, copy(recursive),
+	last opened files(need multi read file cmd), name dublicate, 
+	export/import workspace with variables, check box for multi operations, drag and drop
+debugging: solution: huge switch for each jumps. switch param is pc. also there will be a stack for 'calls'. -solution for breakpoints: calls for a breakpoint check function for each statement at genereated code. slow but at least it is a solution which i couldnt find an alternative yet
+range assignment to a real number, end keyword for : op
+consts, enums
+multilanguage support
+
+references/pointers/arrays
+custom types
+cloud computing. users can run other users code and earn points money etc. 
+improve plot (more than one series, +bug: two plot calls in one run does not work as expected., +second param as Y axis), tableview(+hints for indices)
+a=2;a=[2,3]; gives error ?
+pretty print and mathjax for beautiful render?
+https://github.com/corbanbrook/dsp.js
+new parser
+webgl/webcl
+const var optimization
+compiler optimizations. (more than one register)
+matrix == != with reals
+improve error report (line numbers etc)
+problem with type inference with recursion. function f(x) {    r = f(x-1);    return 0;} c = f(20); (can now give hint by defining optional return value for funtions. if not defined it assumes real return type. in perfect case it should still understand without hint or assumption but solution seems complicated)
+
++new code editor: alternatives : codemirror, http://www.amyeditor.com/, http://ajaxorg.github.io/ace/#nav=about
++checkahead bug. (functionn compiles)
++plotVar, imageVar support for multi views in a script
++bug: error reporting in functions
++tab in code win
++matrix ops .*, ./ with the same precedence with *, /
++better matrix formatting
+directory: +user login, +supported function help
+	+auto login, +openid other than google,
+	+handle user page access rights, +workspace interface(+rename / move, +delete, +new, +copy)
+	+folder: +file move/copy to folder, folder ops: +move, +rename, +caches, +dirty flag, +name char check, +not logged in page behaviour, +file size check(+64k for each file, +max 100 files)
++matrix/vector data type op ':', ( +tests, +A[1:2,2:3] = eye(2))
++direct url link to programs. 
++store global variables at heap like struct.( for non js usage)  
++bug: "3+4 6" does not give error
++(==,!= for matrices)
++user defined functions : assignment_copy_needed(+finished except for user functions)-> similiar to move constructor and rvalue, parameters(+param check) ,+returns ,  -inline functions(disabled now)? ,+recursive scopes, +local/global scopes, +automated type check, +function overloading
++bug: a=2;}b=3;
++bug: function f(){ {   return [5]; } } y = f();
++bug: last line a=f() gives error
++fix disp large array
++e real format: 1e6
++calculator style(pre scan for =?)
++bug:inverse of 1x1 matrix (via numericjs)
++bug:sylvester noninteger input locking.(via numericjs)
++calculator style ; command window, ans(matlab)
++help/tutorial
++bug: dynamic or static type?  i = 0;if (i==0){a=3;}else{a=[3 3];};c = 100;b= a*c;
+-bug: rank
+web page:
+	+analytics?, 
+	-boostrap(+kickstart), 
+	+tabs, 	
+	+change code editor font
+	+credits/links
+	+about
++history window,	Web Storage	
++disp
++comments
++bug:functions with variable parameters not working( ex:disp)
++bug:dublicate func def
++bug:matrix assignment a=eye(4);b=a; a[1,1] = 55; changes b
++scalar/matrix ops
++[] op
++bool
++bug:getmatrix inconsistent seperators	
+-virtual machine
+scanner
+lazy matrix
++functions with 2 or more params
+
+///////////
+https://www.sourcelair.com/
+http://en.wikipedia.org/wiki/Xcas
+http://www.mathics.net/ http://www.sagemath.org/
+http://math.nist.gov/javanumerics/jama/
+sylvester
+http://code.google.com/p/closure-library/source/browse/trunk/closure/goog/math/matrix.js
+http://www.numericjs.com/
+
+http://www.surl.org/usabilitynews/archives.asp
+cat /var/log/httpd/access_log | grep "GET /math/math.php " | awk '{print $1}' | sort | uniq
+
+| & ! ( =,#,<,>
+
+
+Top Down Operator Precedence
+http://javascript.crockford.com/tdop/tdop.html
+
+shunting yard algorithm.
+
+specs:
+1. auto memory managment. (via js)
+2. matrix based language
+3. should be similiar and easily converted to and from an other language.
+	which one? c, matlab, fortan?
+4. should easily converted to a fast compiled language (c, fortran?)
+5. Should run from browser.
+6. community project
+
+features:
+types: bool, real, matrix, strings 
+type inference: static typed without declaration.
+built in matrix operations (+,-,*)
+built in matrix scalar operations
+built in matrix functions via sylvester/numericjs( inv, det, rank etc.), creation([], eye,zeros, rand)
+control : loop, loop0, while, if/else
+comments
+
+pg_dump -U postgres --clean cortex_data  > a.sql
+
+psql -U postgres -d cortex_data -f /var/www/html/beta/a.sql
+psql -U postgres -d test3 -f c:\gorkem\a.sql
+
+
+function detectmob() { 
+ if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ ){
+    return true;
+  }
+ else {
+    return false;
+  }
+}
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+ // some code..
+}

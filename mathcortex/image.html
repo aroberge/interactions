@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Image</title>
+<style type="text/css"></style>
+<link rel="stylesheet" type="text/css" href="style.css" media="all">
+<style type="text/css">
+body {margin: 8px;font:normal 0.8em Verdana, 'Verdana', sans-serif;}
+</style>
+
+
+<script language="javascript" type="text/javascript">
+
+var _simContex;
+var width, height;
+var _setPixelIm, _setPixelData;
+
+function generateImage(imageVar)
+{
+	var c=document.getElementById("canvas_id");
+
+	_simContex=c.getContext("2d");
+
+	width = imageVar.R[0].length;
+	height = imageVar.R.length;
+
+	_setPixelIm = _simContex.createImageData(width,height);
+	_setPixelData  = _setPixelIm.data;
+
+	c.width  = width;
+	c.height = height;
+
+	pos = 0;
+
+	for (y = 0; y < height; y++)
+	{
+		for (x = 0; x < width; x++)
+		{
+			// set red, green, blue, and alpha:
+			_setPixelData[pos++] = Math.max(0,Math.min(255, imageVar.R[y][x]));
+			_setPixelData[pos++] = Math.max(0,Math.min(255, imageVar.G[y][x]));
+			_setPixelData[pos++] = Math.max(0,Math.min(255, imageVar.B[y][x]));
+			_setPixelData[pos++] = 255; // opaque alpha
+		}
+	}
+
+	_simContex.putImageData(_setPixelIm, 0, 0); // at coords 0,0
+
+	document.getElementById("img_id").src = c.toDataURL();
+
+	delete imageVar;
+}
+
+function test()
+{
+	var c=document.getElementById("canvas_id");
+
+	_simContex=c.getContext("2d");
+
+	width = 500;
+	height = 200;
+
+	_setPixelIm = _simContex.createImageData(width,height);
+	_setPixelData  = _setPixelIm.data;
+
+	c.width  = width;
+	c.height = height;
+
+	pos = 0; // index position into imagedata array
+
+	xoff = width / 3; // offsets to "center"
+	yoff = height / 3;
+
+	// walk left-to-right, top-to-bottom; it's the
+	// same as the ordering in the imagedata array:
+
+	for (y = 0; y < height; y++) {
+		for (x = 0; x < width; x++) {
+			// calculate sine based on distance
+			x2 = x - xoff;
+			y2 = y - yoff;
+			d = Math.sqrt(x2*x2 + y2*y2);
+			t = Math.sin(d/6.0);
+
+			// calculate RGB values based on sine
+			r = t * 200;
+			g = 125 + t * 80;
+			b = 235 + t * 20;
+
+			// set red, green, blue, and alpha:
+			_setPixelData[pos++] = Math.max(0,Math.min(255, r));
+			_setPixelData[pos++] = Math.max(0,Math.min(255, g));
+			_setPixelData[pos++] = Math.max(0,Math.min(255, b));
+			_setPixelData[pos++] = 255; // opaque alpha
+		}
+	}
+
+	_simContex.putImageData(_setPixelIm, 0, 0); // at coords 0,0
+	document.getElementById("img_id").src = c.toDataURL();
+}
+
+function on_page_load()
+{
+	if (this.opener && this.opener.imageVar)
+	{
+		var query = window.location.hash.substring(1);//search.substring(1);
+		//alert(query);
+		generateImage(this.opener.imageVar[query]);
+
+		delete this.opener.imageVar[query];
+	}
+	else
+		test();
+}
+
+function MouseMove(e)
+{
+	x=e.clientX - 8; // margin
+	y=e.clientY - 8; // margin
+	coor="Coordonnées: (" + y + "," + x + ")   Couleurs: " + _setPixelData[(x + y * width) * 4] + ',' + _setPixelData[(x + y * width) * 4 + 1] + ',' + _setPixelData[(x + y * width) * 4 +2];
+	document.getElementById("demo").innerHTML=coor
+}
+
+</script>
+
+</head>
+
+
+<body onload="on_page_load();" style="zoom: 1;">
+<div id="placeholder" style="height: 95%;width:100%; min-width:200px;min-height:200px;">
+<canvas id="canvas_id" style="border:1px solid gray;display:none" width="500" height="200"></canvas>
+<img id="img_id" onmousemove="MouseMove(event)" onmouseout="document.getElementById(&#39;demo&#39;).innerHTML=&#39;&#39;;" src="../images/logo_usa.png">
+<span id="demo"></span>
+</div>
+
+</body></html>

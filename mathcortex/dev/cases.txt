@@ -1,0 +1,372 @@
+c=0;
+
+function f()
+{
+  c = c+1;
+  b=[2, 3];
+  b=b + c;
+
+ disp(b);
+};
+
+a=2;
+loop0(i,6)
+{
+f();
+};
+
+//////////
+c=0;
+
+function t()
+{
+  
+  j=3;
+  a=7;
+  c = c+a;
+};
+
+function g()
+{
+  t();
+  j=3;
+  a=7;
+  c = c+a;
+};
+
+
+function f()
+{
+  h=4;
+  c = c+h;
+
+  g();
+};
+
+f();
+
+///////////////////
+c=0;
+
+function g()
+{
+  ii=0;
+  //a=7;
+  //c = c+a;
+};
+
+
+function f()
+{
+  //h=4;
+  //c = c+h;
+
+  g();
+};
+
+
+loop0(i,3)
+{
+g();
+};
+
+
+//////////
+a=20;
+function f()
+{
+
+
+disp(a);
+a=a-1;
+if (a>0)
+{
+   f();
+}
+
+}
+
+f();
+
+function f()
+{
+  f();
+}
+
+f();
+////////////
+a=20;
+
+
+function f()
+{
+
+
+disp(a);
+a=a-1;
+if (a>0)
+{
+   f();
+}
+
+}
+
+function g()
+{
+   i=2;f();a=3;
+}
+
+g();
+///////////////
+function f()
+{
+   x= 2;
+   y = [2,4];
+   //return x+y;
+}
+
+y = f()+2;
+/////
+function g()
+{
+    return 4;
+}
+
+function f(o, t, u)
+{
+   return o*t-u*u-g();
+}
+
+y = f(4,5,3);
+////
+function g()
+{
+    return 4;
+}
+
+function f(o, t, u)
+{
+  if (o>13)
+ {
+   return o*t-u*u-g();
+}
+
+return [5];
+}
+
+y = f(4,5,3);
+///////////
+function g()
+{
+    return 4;
+}
+
+function f(o, t,u)
+{
+ 
+{
+  if (o>3)
+  {
+    return o*t-g()-u;
+  }
+  else
+  {
+    return 3;
+  }
+}
+
+c =5;
+  //return 5;
+}
+
+g();
+y = f(1,5,3);
+//////////////
+function g(x)
+{
+    return x;
+}
+
+a = g(4);
+b = g([5]);
+/////
+function g(x,y)
+{
+    return x+y;
+}
+
+a = g(4,2);
+b = g([2],[2]);
+c = g([5], 2);
+/////////////////
+function g(x,y)
+{
+    return x+y;
+}
+
+function g(x)
+{
+    return x;
+}
+
+a = g(4,2);
+b = g(2);
+////////////
+c = [1,3;2,-2];
+
+function f()
+{
+   
+   return c;
+}
+
+a= f();
+
+a[0,0] = 666;
+///////////////
+
+c = [1,3;2,-2];
+
+function f()
+{
+   disp([3]+[2]);
+   return c;
+}
+
+a1= f();
+a2= f();
+
+a1[0,0] = 666;
+a2[0,1] = 666;
+/////////////
+c = [1,3;2,-2];
+
+i1 = inv(c);
+i2 = inv(c);
+
+/////////////// function pointers
+
+function f()
+{
+  return 3;
+}
+
+
+function g()
+{
+  return 6;
+}
+
+a=4;
+
+if (a==2)
+  b = f;
+else
+  b = g;
+
+c = b();
+
+///////////////
+
+function f()
+{
+  return 3;
+}
+
+function g()
+{
+  return 4;
+}
+
+//x =rand(2);
+a=2;
+if (a==2)
+  { b = f; }
+else
+ { b = g; }
+
+
+d=f();
+c = b();
+
+disp("end")
+
+////////////
+
+x=0;
+y=0;
+
+function draw()
+{
+   x=x+0.01;
+   y=y+0.012;
+
+   canvas.setpixel(x,y, 0);
+
+   if(x >= 100)
+     { x = 2; }
+
+   if(y >= 100)
+     { y = 2; }
+
+   return 0;
+}
+
+function init()
+{
+   x=0;
+   y=0;
+
+   return 0;
+}
+
+canvas(100,100, draw, init);
+
+
+disp("end");
+/////////
+///// simple function example
+function addition(a, b)
+{
+  r = a + b;
+  return r;
+}
+
+///// recursive function example
+function f(a)
+{
+  disp(a);
+  a = a - 1;
+  if (a > 0)
+  {
+    f(a);
+  }
+ 
+  return 0;
+}
+
+a=11;
+///// main 
+f(20);
+
+y = addition(55, 22);
+///////////////////// error?
+function f(x) {
+    if(x<1) {
+        return 1;
+    } else {
+        return f(x-1)-2;
+    }
+}
+
+c = f(20);
+
+////////////////
+function f()
+{
+  return [4];
+}
+
+g = f;
+
+disp(g()); // produces asm_func_dispundefined();

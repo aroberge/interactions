@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Calculatrice simple pour algèbre linéaire</title>
+  <meta content="Adaptation, avec permision, de MathCortex.com ." name="description">
+  <meta content="Gorkem Gencay (modifié, avec permission, par André Roberge)" name="Author">
+  <link href="css/style_fr.css" rel="stylesheet" type="text/css">
+  <script src="lib/jquery-1.6.4.min.js"></script>
+  <script src="js/lang_fr.js"></script>
+  <script src="js/parser_funcs.js"></script>
+  <script src="js/parser_type.js"></script>
+  <script src="js/asm_js.js"></script>
+  <script src="js/numeric-1.2.6.min.js"></script>
+  <script src="js/algorithms.js"></script>
+  <script src="js/test.js"></script>
+  <script src="js/gui_fr.js"></script>
+  <script src="lib/ace.js"></script>
+  <script src="js/pages_fr.js"></script>
+  <script src="lib/mode-javascript.js"></script>
+  <script>
+    function increase_font(tag) {
+        elems = document.getElementsByTagName(tag);
+        for (elem of elems) {
+            style = window.getComputedStyle(elem, null).getPropertyValue('font-size');
+            currentSize = parseFloat(style);
+            elem.style.fontSize = (currentSize + 2) + 'px';
+        }
+    }
+    function decrease_font(tag) {
+        elems = document.getElementsByTagName(tag);
+        for (elem of elems) {
+            style = window.getComputedStyle(elem, null).getPropertyValue('font-size');
+            currentSize = parseFloat(style);
+            elem.style.fontSize = (currentSize - 2) + 'px';
+        }
+    }
+  </script>
+</head>
+
+<body onload="on_load_page();">
+  <header>
+    Calculatrice pour Introduction à l'algèbre linéaire
+    <span class="smalltext">
+      [adaptée de <a class="external" href="http://www.mathcortex.com">MathCortex Online Computing]</a>
+    </span>
+          <a class="btn infolink" href="#" onclick="toggle_help_col();" style=
+      "float:right;padding-left:12px;padding-right:0px;"><span class="icon small"
+      id="toggle_help_span">}</span> Aide</a>
+  </header>
+
+  <div id="wrap_content">
+    <div id="helpcol">
+      <div id="leftcontent">
+        <a class="infolink" href="#"><span class="icon gray small" style=
+        "top:-14px">}</span>Description</a>
+
+        <div class="expandable">
+          <p>Cette calculatrice a été adaptée de <a href="http://www.mathcortex.com">mathcortex.com</a> par
+              André Roberge avec la permission de Gorkem Gencay,
+              créateur de MathCortex.  Utilisant <a href="http://www.numericjs.com/">Numeric Javascript</a>,
+              elle permet de faire plusieurs calculs matriciels vus dans
+              un cours d'introduction à l'algèbre linéaire. Les calculs sont normalement
+              sauvegardés automatiquement sur votre ordinateur.
+          </p>
+          <p>Chaque instruction doit se terminer par un point virgule (;).</p>
+          <p>Tout texte qui suit // jusqu'à la fin d'une ligne
+              est un commentaire, ignoré par la calculatrice</p>
+        </div>
+        <br>
+        <a class="small infolink" href="#"><span class="icon gray small" style=
+        "top:-14px">}</span>Fonctions</a>
+
+        <div class="expandable">
+          <h6>inv</h6>
+            Inverse d'une matrice<br>
+            <code>Y = inv(X);</code><br>
+
+          <h6>det</h6>
+            Déterminant d'une matrice<br>
+            <code>d = det(X);</code><br>
+
+          <h6>disp / print</h6>
+            Affichage des variables<br>
+            <code>disp(X);</code><br>
+            <code>print(Y);</code><br>
+
+          <h6>trans</h6>
+            Transposée d'une matrice<br>
+            <code>Y = trans(X);</code><br>
+
+          <h6>eye</h6>
+            Création d'une matrice identité<br>
+            <code>X = eye(n);</code><br>
+
+          <h6>zeros</h6>
+            Création d'une matrice nulle<br>
+            <code>X = zeros(n);</code><br>
+            <code>X = zeros(m,n);</code><br>
+
+          <h6>ones</h6>
+            Création d'une matrice remplie de 1<br>
+            <code>X = ones(n);</code><br>
+            <code>X = ones(m,n);</code><br>
+
+          <h6>rand</h6>
+            Création d'une matrice dont les coefficients
+            sont des nombres aléatoires entre 0 et 1 <br>
+            <code>X = rand(n);</code><br>
+            <code>X = rand(m,n);</code><br>
+
+          <h6>Fonctions élémentaires</h6>
+            <code>abs(x), acos(x), asin(x), atan(x), atan2(y,x),
+            ceil(x), cos(x), exp(x), floor(x), log(x), max(x,y,z,...,n), min(x,y,z,...,n),
+            pow(x,y), random(), round(x), sin(x), sqrt(x), tan(x)</code><br>
+
+          <h6>sum</h6>
+            Somme de tous les éléments<br>
+            <code>s = sum(X);</code><br>
+
+          <h6>linspace</h6>
+            Génère un vecteur dont les coefficients sont linéairement espacés<br>
+            <code>y = linspace(a,b);</code><br>
+            <code>y = linspace(a,b,n);</code><br>
+
+          <h6>linsolve</h6>
+            Résout un système d'équations linéaires<br>
+            <code>x = linsolve(A,b);</code><br>
+
+          <h6>svd</h6>
+            Singular value decomposition<br>
+            <code>X = svd(X);</code><br>
+            <code>[U S V] = svd(X);</code><br>
+
+          <h6>eig</h6>
+            Trouve les valeurs propres et les vecteurs propres<br>
+            <code>valeur = eig(X);</code><br>
+            <code>[Valeur Vecteur] = eig(M);</code><br>
+
+          <h6>plot</h6>
+            Produit un graphique<br>
+            <code>plot(X);</code><br>
+            <code>plot(X,Y);</code><br>
+
+          <h6>numcols, numrows</h6>
+            Obtenir le nombre de lignes (r=rows) ou colonnes d'une matrice<br>
+            <code>r = numrows(X);</code><br>
+            <code>c = numcols(X);</code><br>
+        </div>
+      </div>
+    </div>
+
+    <div id="middlecol" style="width: 52%;">
+      <div id="code_txt_div" style=
+      "left:0px;right:0px;position:absolute;top:0px;bottom:190px;padding-right:12px;padding-left:8px;margin:0 12px 0 8px">
+      <div class="tabContainer" style="position:absolute;top:0;bottom:0px;left:0;right:0;">
+          <div class="tabs" id="pagesToolbarCont">
+            <ul>
+              <li id="pages_btn0" onclick="SelectPage(0)" style="width:140.5px" title="new 3">new
+              3<img class="" height="14" src="icons/page_white_error.png" style=
+              "position:absolute;right:20px;" width="14"><img class="" height="12" onclick="RemovePage(0)" src=
+              "icons/delete-icon.png" style="position:absolute;right:5px;" width="12"></li>
+
+              <li style="list-style: none"><button onclick=
+              "AddNewPage()">+</button></li>
+            </ul>
+          </div>
+
+          <div style=
+          "position:absolute;height:5px;left:5px;right:4px;border:1px solid #CCC;border-bottom:0;background-color:#f4f4f4;z-index:2">
+          </div>
+
+          <div class="whiteGradient" style="padding:4px;position:absolute;left:5px;right:4px;height:24px;top:35px; background-color:#EEEEEE;margin-left:0px;border:1px solid #CCC;border-top:0">
+            <button class="btn small" onclick="parse_m(ace_editor.getSession().getValue());asm_execute(update_editor);" style="background-color:blue"><span class="icon red">}</span>Calculer</button>
+            <button class="btn small" onclick="increase_font('pre');">
+            <span style="font-size:smaller">A</span>
+            <span class="icon red small">↑</span><span style="font-size:larger">A</span>
+            <button class="btn small" onclick="decrease_font('pre');">
+                <span style="font-size:larger">A</span><span class="icon red small">↓</span>
+            <span style="font-size:smaller">A</span></button>
+            <textarea class="header_link_exp" id="view_gen_code" style="width:350px;background-color: white;margin-top:28px;">asm_reg0 =1;</textarea>
+            <select onchange="OpenPageText(on_tutorial_change(this.options[this.selectedIndex].value), this.options[this.selectedIndex].innerHTML);" style="float:right;font-size: 13px;min-width:180px;margin-right:3px;margin-top:2px">
+              <option selected="selected" value="">
+                - Exemples -
+              </option>
+              <option value="add_mat">Addition de matrices</option>
+              <option value="comb_mat">Combinaison linéaire</option>
+              <option value="mult_mat">Multiplication de matrices</option>
+              <option value="transp">Transposée d'une matrice</option>
+              <option value="ex_linsolve">Système d'équations linéaires</option>
+              <option value="inconsistant">Système incompatible</option>
+              <option value="inverse">Inverse d'une matrice</option>
+              <option value="determinant">Déterminant</option>
+              <option value="propre">Valeurs et vecteurs propres</option>
+            </select>
+          </div>
+
+          <div style="position:absolute;top:64px;bottom:4px;left:5px;right:4px">
+            <textarea id="code_txt" spellcheck="false" style="border: 5px #0;width:100%;height:100%;display:none" wrap="off">a = 4 + sin(pi / 6) * cos(pi / 4);</textarea>
+
+            <div style="width:100%;height:100%;padding-top:3px;margin-top:3px;border:1px solid #ccc">
+              <pre id="editor" style="border:0px;padding:0;width:100%;height:100%;">A = [1, 2; 3, 4];
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <span id="share_btn" title="Hyperlien pour cet exemple" class="icon" style="cursor:pointer;position:absolute;top: 66px;left: auto;right: 30px;" onclick="$(&#39;#link_input&#39;).val( location.protocol + &#39;//&#39; + location.host + location.pathname + &#39;#cmd=run&amp;code=&#39; + encodeURIComponent(codeUri(ace_editor.getSession().getValue())));$(&#39;#link_input&#39;).focus();$(&#39;#link_input&#39;).select();">_
+        </span>
+        <div id="link_win" class="bordersmooth" style="padding:6px;width:500px;height:40px;overflow:auto;position:absolute;top: 84px;left: auto;right: 32px;font-size:11px;background-color: #E8E8FF;border: 1px solid #bbb;box-shadow: 2px 3px 4px #4d4c47;display:none;z-index:1">
+          Hyperlien pour cet exemple
+          <input id="link_input" style="width:98%" type="text" value="">
+        </div>
+      </div>
+
+      <div id="out_win_div" style="height:190px;left:5px;right:0px;position:absolute;bottom:0px;padding-right:12px;padding-left:8px;">
+        <pre class="code_table_div" id="output_win_txt" style="white-space:pre;word-wrap:normal; box-shadow: 0px 0px 0px #888888;left:0;right:10px;width:auto;height:125px;margin-bottom:0px;margin-top:10px;padding:4px"> </pre>
+        <span class="icon" onclick="document.getElementById('output_win_txt').innerHTML = ''" style="cursor:pointer;position:absolute;top: 6px;left: auto;right: 32px;font-size:16px;"
+        title="Effacer le texte">.</span>
+        <span class="icon" id="toggle_output_window" onclick="toggle_output_window();"
+        style="cursor:pointer;position:absolute;left: auto;top:1px;right: 54px;"
+        title="Agrandir">~</span>
+
+        <div style="width: 100%;display:none">
+          <div style="width: 20px; float: left;margin-top:4px;height:24px;">
+            &gt;&gt;
+          </div>
+
+          <div style="margin-left: 24px; margin-right: 32px;">
+            <textarea cols="50" id="command_win" placeholder="Enter your command here like (143+656)*(5-2)"
+              rows="1" style="width:100%;box-shadow: 2px 2px 1px #888888;height:32px;margin-top:0px;"> </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rightcol">
+      <div style="height:95%;position:relative">
+        <br>
+
+        <b>Variables </b> <button class="small white" id="var_clear_all" onclick=
+        "comp_clear_all();update_editor();"><span class=
+        "icon red small">!</span>Effacer</button>
+        <button class="btn small" onclick="increase_font('td');">
+            <span style="font-size:smaller">A</span>
+            <span class="icon red small">↑</span><span style="font-size:larger">A</span>
+            <button class="btn small" onclick="decrease_font('td');">
+                <span style="font-size:larger">A</span><span class="icon red small">↓</span>
+            <span style="font-size:smaller">A</span></button>
+        <div class="code_table_div" id="var_table_cont" style=
+        "position:absolute;top:42px;bottom:20px;background-color:white"></div>
+
+        <div style="position:absolute;bottom:0;left:0;right:0;">
+          Format des matrices :
+          <select id="format_style" style="margin-left:10px" onchange="update_editor();">
+          <option>Simple <!-- [e1,e2;e3,e4]--></option>
+          <option>MathCortex<!-- [e1,e2;e3,e4]--></option>
+          <option>Liste de listes<!-- [[e1,e2],[e3,e4]]--></option>
+          <option>LaTeX<!-- e1 & e2 \\ e3 & e4--></option>
+        </select>
+          <input checked id="pres_check" onclick="update_editor();" type="checkbox">
+          <label class="inline" for="pres_check">Valeurs arrondies</label>
+        </div>
+      </div><br>
+
+      <div style="height:43%;position:relative;display:none">
+        Historique <button class="small white" onclick="hist_clear_all();"><span class=
+        "icon red small">!</span>Effacer tout</button><br>
+
+        <div class="code_table_div" id="hist_div" style=
+        "position:absolute;top:25px;bottom:25px;width:100%">
+          <textarea id="hist_txt" rows="1" style="display:none"> </textarea>
+
+          <table id="hist_table" style="white-space:nowrap;">
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- examples -->
+<div style="display:none;">
+
+<pre id="add_mat">A = [ 2, 1;
+      3, 4 ];
+
+B = [2, 1; 3, 5];
+
+C = A + B;
+
+// Exemple de matrices incompatibles
+
+// D = [2, 1, 0; 3, 4, 0];
+// E = A + D;
+</pre>
+<pre id="comb_mat">// Combinaison linéaire
+A = [2, 3, 4; 1, 2, 1];
+B = [0, 2, 7; 1, -3, 5];
+
+C = A - 3*B;
+</pre>
+<pre id="mult_mat">// Multiplication de matrices
+A = [1, 2, 4;
+     1, 2, 1];
+
+B = [4, 1, 3, 3;
+     0, -1, 3, 1;
+     2, 7, 5, 2];
+
+C = A*B;
+
+// Exemple de matrices incompatibles
+//D = B * A;</pre>
+<pre id="transp">// Transposée d'une matrice
+A = [2, 3, 4;
+     0, 1, 5];
+
+At = trans(A);</pre>
+<pre id="ex_linsolve">// On veut résoudre Ax = b
+
+A = [1, 1, 2;
+     2, 4, -3;
+     3, 6, -5];
+
+b = [9; 1; 0];
+
+x = linsolve(A, b);
+
+// N.B. le calcul ci-dessus est fait avec une précision limitée
+// Vérification: ci-dessous, z devrait être la matrice nulle
+
+z = A * x - b;
+
+// Utilisons des valeurs entières pour vérifier
+
+xx = [1; 2; 3];
+zz = A * xx - b;
+</pre>
+<pre id="inconsistant">// Système incompatible
+
+A = [0, 1, 5;
+     1, 4, 3;
+     2, 7, 1];
+
+b = [-4; -2; -1];
+
+x = linsolve(A, b);</pre>
+<pre id="inverse">// Calcul de l'inverse
+
+A = [1, 2;
+     3, 4];
+
+a = inv(A);</pre>
+<pre id="determinant">// Calcul du déterminant
+
+A =  [1, 2;
+      3, 4];
+
+det_a = det(A);
+
+//-----------------------
+
+B = [1, 2, 3;
+     4, 5, 6;
+     7, 8, 9];
+
+det_b = det(B);  // devrait être égal à zéro !</pre>
+<pre id="propre">// Vecteurs et valeurs propres
+
+A = [5, 0;
+     0, 2];
+
+// On peut facilement conclure que
+// les valeurs propres sont 5 et 2,
+// et que les vecteurs propres correpondants
+// sont transp([1, 0]) et transp([0, 1])
+
+// Voici comment obtenir ce résultat
+
+[val vect] = eig(A);
+
+</pre>
+</div>
+
+
+</body>
+</html>

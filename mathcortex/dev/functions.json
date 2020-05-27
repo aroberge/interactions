@@ -1,0 +1,148 @@
+[
+{ 	"name":"inv" ,  
+	"description" : "Inverse of a matrix",
+	"param" :
+	[
+		"matrix"
+	],
+	"example" : 
+	[
+		"Y = inv(X)"
+	],
+	"returns" : "matrix"
+},
+
+{ 	"name":"det" ,  
+	"description" : "Determinant of a matrix",
+	"param" :
+	[
+		"matrix"
+	],
+	"example" : 
+	[
+		"d = det(X)"
+	],
+	"returns" : "real"
+},
+
+{ 	"name":"disp" , 
+	"description" : "Displays variables",
+	"param" :
+	[
+		"any"
+	],
+	"example" : 
+	[
+		"disp(X)"
+	],
+	"returns" : "none"
+},
+
+
+{ 	"name":"trans" ,  
+	"description" : "Transpose of a matrix",
+	"param" :
+	[
+		"matrix"
+	],
+	"example" : 
+	[
+		"Y = trans(X)"
+	],
+	"returns" : "matrix"
+},
+
+{ 	"name":"eye" ,  
+	"description" : "Creates identity matrix",
+	"param" :
+	[
+		"integer"
+	],
+	"example" : 
+	[
+		"X = eye(n)"
+	],
+	"returns" : "matrix"
+},
+{ 	"name":"zeros" ,  
+	"description" : "Creates a matrix filled with zeros",
+	"param" :
+	[
+		"integer",
+		"integer"
+	],
+	"example" : 
+	[
+		"X = zeros(n)",
+		"X = zeros(m,n)"
+	],
+	"returns" : "matrix"
+},
+{ 	"name":"rand" ,  
+	"description" : "Creates a random matrix where elements are between 0 and 1",
+	"param" :
+	[
+		"integer",
+		"integer"
+	],
+	"example" : 
+	[
+		"X = rand(n)",
+		"X = rand(m,n)"
+	],
+	"returns" : "matrix"
+},
+{ 	"name":"linsolve" ,
+	"description" : "Solves system of linear equations",
+	"param" :
+	[
+		"matrix",
+		"matrix"
+	],
+	"example" : 
+	[
+		"x = linsolve(A,b)"
+	],
+	"returns" : "matrix"
+},
+{ 	"name":"svd" ,
+	"description" : "Singular value decomposition",
+	"param" :
+	[
+		"matrix"
+	],
+	"example" : 
+	[
+		"[u s v] = svd(A)"
+	],
+	"returns" : "matrix"
+},
+{ 	"name":"eig" ,
+	"description" : "Finds eigenvectors and eigen values",
+	"param" :
+	[
+		"matrix"
+	],
+	"example" : 
+	[
+		"[lambda v] = eig(A)",
+		"[lambdaReal vReal lambdaIm vIm] = eig(A)"
+	],
+	"returns" : "matrix"
+},
+{ 	"name":"plot" ,
+	"description" : "2D Plot",
+	"param" :
+	[
+		"matrix",
+		"matrix"
+	],
+	"example" : 
+	[
+		"plot(X)",
+		"plot(X,Y)"
+	],
+	"returns" : "none"
+}
+]
+

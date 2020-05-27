@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Canvas experiment</title>
+
+    <link href="css/bilingual.css" rel="stylesheet" type="text/css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="javascript/jquery.js"><\/script>')</script>
+    <script type="text/javascript" src="javascript/optics.js"></script>
+
+</head>
+
+<body onload="init();">
+<div class="wrapper">
+	<header>
+		<ul class="menu">
+			<li id="logo"><a href="index.html">André Roberge</a></li>
+			<li id="title"> Interactions</li>
+			<li> <a href="http://usainteanne.ca"><img class="sainte-anne" src="images/sainte-anne.png"/></a></li>
+		</ul>
+	</header>
+    <div id="content" class="shadow">
+		<canvas class="centre" id="canvas" height="500" width="800">
+			Your browser does not support the html5 canvas.
+		</canvas>
+	</div>  <!-- id content -->
+
+    <footer id="footer" class="clear"></footer>
+</div> <!-- wrapper -->
+</body>
+<script type="text/javascript" charset="utf-8">
+$('#footer').load('footer.xml');
+</script>
+</div>  <!-- class wrapper -->
+
+
+
+</body>
+</html>

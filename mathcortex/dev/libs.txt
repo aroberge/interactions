@@ -1,0 +1,3 @@
+flot (free, uses jquery)
+http://www.jqplot.com
+google charts

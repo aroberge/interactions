@@ -1,0 +1,168 @@
+	
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Variable Table</title>
+<style type="text/css">
+html, body
+{
+ height: 95%; width:95%;
+ font-family: Consolas, monospace;
+ font-size: 13px;
+}
+
+pre
+{
+    font-family: Consolas, monospace;
+}
+
+td{
+	border-bottom: 1px dotted #ddd;
+	padding-right:20px;
+	white-space: nowrap;
+}
+
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31271317-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script language="javascript" type="text/javascript" src="../lib/jquery-1.6.4.min.js"></script>
+
+<script type="text/javascript">
+function matrix_print_table(M, format, style)
+{
+    var s='';
+
+    if (M===undefined || M[0]===undefined)
+    {
+        s+= "\tundefined";
+        return s;
+    }
+
+    var rows = M.length;
+    var cols = M[0].length;
+
+    var pres;
+
+    if (format)
+        pres = 4;
+    else
+        pres = 20;
+
+    if (style ==1)
+    {
+        // m style
+        var sep_b = '[';
+        var sep_e = '];';
+        var sep_ln_b = '';
+        var sep_ln_e = ';';
+        var sep_elm = ', ';
+    }
+    else if (style ==2)
+    {
+        // c style
+        var sep_b = '{';
+        var sep_e = '}};';
+        var sep_ln_b = '{';
+        var sep_ln_e = '},';
+        var sep_elm = ', ';
+    }
+	else if (style ==3)
+	{
+		// LaTeX style
+		var sep_b = '';
+		var sep_e = '';
+		var sep_ln_b = '';
+		var sep_ln_e = ' \\\\\n';
+		var sep_elm = ' &';
+	}
+    else if (style ==0)
+    {
+        //plain
+        var sep_b = '';
+        var sep_e = '';
+        var sep_ln_b = '';
+        var sep_ln_e = '';
+        var sep_elm = '\t';
+    }
+
+    s+= sep_b + '<table><tbody>';
+    var s1,s2;
+    var v;
+
+    var i,j;
+    for(i = 0; i < rows; i++)
+    {
+        var R = M[i];
+        var numTxt;
+        s+= '<tr>';
+
+        for(j = 0 ; j < cols; j++)
+        {
+            v = R[j];
+            s1 = v.toPrecision();
+            s2 = v.toPrecision(pres);
+            if (s1.length < s2.length) numTxt=s1; else numTxt=s2;
+
+            if (j==0)
+                numTxt = sep_ln_b + numTxt;
+            if (j==cols-1 && i!=rows-1)
+                numTxt += sep_ln_e;
+
+            /*if((i % 2) == 0)
+            {
+                s+= '<td class="table-light "';
+            }
+            else
+                s+= '<td ';*/
+
+            s += '<td title="' + i + ',' + j + '">'+ numTxt;
+
+            if(j!=cols-1)
+                s+=sep_elm;
+
+            s+='</td>';
+        }
+
+        if(i!=rows-1)
+        {
+            numTxt += sep_ln_e;
+        }
+
+        s+='</tr>';
+    }
+
+    s+= '</tbody></table>' + sep_e;
+
+    return s;
+}
+
+
+function generateTable(tableVar)
+{
+  //alert(tableVar);
+  var table = matrix_print_table(tableVar.arr, tableVar.format, tableVar.style);
+  document.title = "Matrix View '" + tableVar.name + "'";
+  var examples;
+  examples = tableVar.style == 2 ? '<pre title="c# and c usage">' + 'double[,] ' + tableVar.name + ' = new double[,]'  + '\n' + 'double ' + tableVar.name + '['+ tableVar.arr.length +'][' +tableVar.arr[0].length+ '] = ' + '</pre>'
+                                :'<pre>' + tableVar.name + '['+ tableVar.arr.length +'][' +tableVar.arr[0].length+ ']' + '</pre>';
+  $("#placeholder").html( examples + table);
+  //$("#placeholder").html("<pre> <span title='xx'>1</span> <span title='xx'>1</span></pre>");
+}
+
+</script>
+
+</head>
+<body onload="if (this.opener) generateTable(this.opener.tableVar); ">
+<div id="placeholder" style="height: 95%;width:100%; min-width:200px;min-height:200px;">
+Loading...
+</div>
+</body></html>
