@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Introduction to span</title>
+        <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
+    </head>
+	<script type="text/javascript" async
+	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+          MathJax.Hub.Config({
+          extensions: ["tex2jax.js"],
+          jax: ["input/TeX","output/HTML-CSS"],
+          tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+          TeX: {
+          }
+          });
+    </script>
+    <body>
+      <center>
+      <table width=640>
+	<tr><td>
+	<center>
+	  <h2> Introduction to span</h2> 
+	</center>
+
+	<p>
+	  The diagram below can be used to construct linear combinations
+	  of the vectors
+	  $$
+	  {\mathbf v} = \left[\begin{array}{c}1 \\ 2 \end{array}\right],
+	  {\mathbf w} = \left[\begin{array}{c}-2 \\ -4 \end{array}\right]
+	  $$
+	  whose
+	  weights \(a\) and \(b\) may be varied using the sliders at
+	  the top.  The  
+	  vectors \({\mathbf v}\) and \({\mathbf w}\) are drawn in
+	  gray while the 
+	  linear combination
+	  $$
+	  a{\mathbf v} + b{\mathbf w}
+	  $$
+	  is in red.
+	</p>
+
+	<p>
+	  <div style="text-align:center">
+	    <canvas id="bottomsliders" width="350" height="100">
+	      Your browser does not support HTML5 Canvas.
+	    </canvas>
+	    <br>
+	    <canvas id="bottomcanvas" width="350" height="350" hspace=5>
+	      Your browser does not support HTML5 Canvas.
+	    </canvas>
+	    <script type='text/javascript' src='jslibrary/figures.js'></script>
+	    <script type='text/javascript' src='jslibrary/linearcomb1.js'></script>
+	  </div>
+	</p>
+	<br>
+	<hr>
+	<br>
+
+	<p>
+	  In a similar way, the diagram below can be used to construct
+	  linear combinations of the vectors
+	  $$
+	  {\mathbf v} = \left[\begin{array}{c}2 \\ 1 \end{array}\right],
+	  {\mathbf w} = \left[\begin{array}{c}1 \\ 2 \end{array}\right].
+	  $$
+	</p>
+	
+	<p>
+	  <div style="text-align:center">
+	    <canvas id="topsliders" width="350" height="100">
+	      Your browser does not support HTML5 Canvas.
+	    </canvas>
+	    <br>
+	    <canvas id="topcanvas" width="350" height="350" hspace=5>
+	      Your browser does not support HTML5 Canvas.
+	    </canvas>
+	    <script type='text/javascript' src='jslibrary/figures.js'></script>
+	    <script type='text/javascript' src='jslibrary/linearcomb1.js'></script>
+	  </div>
+	</p>
+	
+
+	
+	</center>
+	</td></tr>
+      </table>
+      </center>
+    </body>
+</html>
