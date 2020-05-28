@@ -64,22 +64,34 @@ function Canvas(id, bbox) {
 	var y = event.offsetY;
 	for (i in this.moveables) {
 	    if (this.moveables[i].hit(x,y)) {
-		this.moving = this.moveables[i];
-		var p = this.container.transform.inverseTransformPoint([x,y]);
-		this.moving.move(p);
-		return;
-	    }
-	}
-
+    		this.moving = this.moveables[i];
+    		var p = this.container.transform.inverseTransformPoint([x,y]);
+    		this.moving.move(p);
+    		return;
+    	    }
+    	}
     }
+
     element.onmousemove = function(event) {
+    var x = event.offsetX;
+    var y = event.offsetY;
+    var class_added = false;
+    for (i in this.moveables) {
+        if (this.moveables[i].hit(x,y)) {
+            this.classList.add("selectable");
+            class_added = true;
+        break;
+        }
+    }
+    if (!class_added) {
+        this.classList.remove("selectable");
+    }
+
 	if (this.moving == null) return;
-	var x = event.offsetX;
-	var y = event.offsetY;
 	var p = this.container.transform.inverseTransformPoint([x,y]);
 	this.moving.move(p);
-
     }
+
     element.onmouseup = function(event) {
 	if (this.moving == null) return;
 	var x = event.offsetX;
@@ -433,7 +445,7 @@ function Slider(rx, y, sx, update) {
     }
 }
 Slider.prototype = new Plotable();
-    
+
 function Function(f) {
     this.f = f;
     this.dx = 0.0001;
@@ -963,7 +975,7 @@ var stopAnimation = function() {
     }
     timer = null;
 }
-    
 
 
-	
+
+
