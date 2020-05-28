@@ -1,8 +1,10 @@
 var dx = 0.1;
+var x_min=-8, x_max=8, y_min=-8, y_max=8;
+var tick_min=-4, tick_max=4, _increment = 1;
 var mkslider = function(xr, y, canvas, method) {
-    var s = new Slider(xr, y, [-2,2], method);
-    s.ticks = [-2,1,2]
-    s.labels = [-2,1,2]
+    var s = new Slider(xr, y, [tick_min,tick_max], method);
+    s.ticks = [tick_min, _increment, tick_max];
+    s.labels = [tick_min, _increment, tick_max];
     s.point.style = "box";
     s.point.fillColor = "blue"
     s.point.size = 4;
@@ -12,7 +14,7 @@ var mkslider = function(xr, y, canvas, method) {
 }
 
 var topmatrix = new Canvas("topsliders", [0,0, 2,2]);
-var topcanvas = new Canvas("topcanvas", [-4,-4,4,4]);
+var topcanvas = new Canvas("topcanvas", [x_min, y_min, x_max, y_max]);
 
 topmatrix.margins = [20,5,20,5];
 topmatrix.setUpCoordinates();
@@ -76,7 +78,7 @@ var lbv = new Label("v", [-2,-4]);
 lbv.offset = [-10,5];
 lbv.font = "bold 16px arial";
 
-var tcgrid = new Grid([-4,1,4], [-4,1,4]);
+var tcgrid = new Grid([x_min, _increment, x_max], [y_min, _increment, y_max]);
 topcanvas.addPlotable(tcgrid);
 
 var trgrid = new TGrid([2,1],[1,2])
@@ -84,8 +86,8 @@ trgrid.strokeColor = "gray"
 topcanvas.addPlotable(trgrid)
 
 var tcaxes = new Axes();
-tcaxes.labels = [[-4,1,4], [-4,1,4]]
-tcaxes.ticks = [[-4,1,4], [-4,1,4]]
+tcaxes.labels = [[x_min, _increment, x_max], [y_min, _increment, y_max]]
+tcaxes.ticks = [[x_min, _increment, x_max], [y_min, _increment, y_max]]
 topcanvas.addPlotable(tcaxes);
 
 var tu = new Vector([2,1]);
