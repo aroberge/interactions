@@ -40,7 +40,7 @@ var bottomupdate = function() {
 var ta = mkslider([dx, 2-dx], 1.5, topmatrix, topupdate);
 var tb = mkslider([dx, 2-dx], 0.5, topmatrix, topupdate);
 ta.init(1);
-tb.init(0);
+tb.init(1);
 
 var lta = new Label("a", [0,1.5]);
 lta.offset = [-5,-3]
