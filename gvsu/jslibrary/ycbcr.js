@@ -1,9 +1,13 @@
 var def = 0;
+var span_ycbcr = document.getElementById("span_ycbcr");
+
 var ycbcrupdate = function() {
     var y = yValue.coordinate();
     var cb = cbValue.coordinate();
     var cr = crValue.coordinate();
     var values = ycbcr2rgb(y, 0, 0);
+    var round = Math.round;
+
     yRect.fillColor = getColor(values[0], values[1], values[2]);
     values = ycbcr2rgb(128, cb, 0);
     cbRect.fillColor = getColor(values[0], values[1], values[2]);
@@ -11,7 +15,8 @@ var ycbcrupdate = function() {
     crRect.fillColor = getColor(values[0], values[1], values[2]);
     values = ycbcr2rgb(y,cb,cr);
     ycbcrRect.fillColor = getColor(values[0], values[1], values[2]);
-    
+
+    span_ycbcr.innerHTML = round(y) + ", " + round(cb) + ", " + round(cr);
     ycbcrsliders.draw();
 }
 

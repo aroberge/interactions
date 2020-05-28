@@ -1,9 +1,13 @@
 var def = 0;
+var span_hsv = document.getElementById("span_hsv");
+
 var hsvupdate = function() {
     var h = hValue.coordinate();
     var s = sValue.coordinate();
     var v = vValue.coordinate();
     var values = hsv2rgb(h, 1, 1);
+    var round = Math.round;
+
     hRect.fillColor = getColor(values[0], values[1], values[2]);
     values = hsv2rgb(180, s, 1);
     sRect.fillColor = getColor(values[0], values[1], values[2]);
@@ -11,7 +15,8 @@ var hsvupdate = function() {
     vRect.fillColor = getColor(values[0], values[1], values[2]);
     values = hsv2rgb(h,s,v);
     hsvRect.fillColor = getColor(values[0], values[1], values[2]);
-    
+
+    span_hsv.innerHTML = round(h) + ", " + round(s*100)/100. + ", " + round(v*100)/100.;
     hsvsliders.draw();
 }
 

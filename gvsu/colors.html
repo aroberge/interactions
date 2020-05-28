@@ -19,17 +19,18 @@
       <table width=640>
 	<tr><td>
 	<center>
-	  <h2> Color models</h2> 
+	  <h2> Color models</h2>
 	</center>
 
 	<p> <b> RGB color model: </b>
 	  The diagram below enables you to create colors using various
 	  amounts of red, green, and blue.  For each of these three
-	  quantities, the 
+	  quantities, the
 	  slider varies between 0 and 255.
 	</p>
 	<p>
 	  <div style="text-align:center">
+        (R, G, B) = (<span id="span_rgb"></span>) <br>
 	    <canvas id="rgb" width="350" height="70">
 	      Your browser does not support HTML5 Canvas.
 	    </canvas>
@@ -51,6 +52,7 @@
 	</p>
 	<p>
 	  <div style="text-align:center">
+        (Y, Cb, Cr) = (<span id="span_ycbcr"></span>) <br>
 	    <canvas id="ycbcr" width="350" height="70">
 	      Your browser does not support HTML5 Canvas.
 	    </canvas>
@@ -62,19 +64,20 @@
 	<hr>
 	<br>
 
-	<p> <b>HSV color model:</b> 
+	<p> <b>HSV color model:</b>
 	  The diagram below enables you to vary the three parameters \(H\),
 	  \(S\), and \(V\) in the \(HSV\) color model.
 	</p>
 	<p>
 	  <div style="text-align:center">
+        (H, S, V) = (<span id="span_hsv"></span>) <br>
 	    <canvas id="hsv" width="350" height="70">
 	      Your browser does not support HTML5 Canvas.
 	    </canvas>
 	    <script type='text/javascript' src='jslibrary/hsv.js'></script>
 	  </div>
 	</p>
-	
+
 	</center>
 	</td></tr>
       </table>

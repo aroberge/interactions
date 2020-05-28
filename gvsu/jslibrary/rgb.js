@@ -1,13 +1,17 @@
 var def = 0;
+var span_rgb = document.getElementById("span_rgb");
+
 var update = function() {
     var rs = redValue.coordinate();
     var gs = greenValue.coordinate();
     var bs = blueValue.coordinate();
+    var round = Math.round;
     redRect.fillColor = getColor(rs, def, def);
     greenRect.fillColor = getColor(def, gs, def);
     blueRect.fillColor = getColor(def, def, bs);
     rgbRect.fillColor = getColor(rs,gs,bs);
-    
+
+    span_rgb.innerHTML = round(rs) + ", " + round(gs) + ", " + round(bs);
     sliders.draw();
 }
 
