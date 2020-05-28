@@ -29,13 +29,6 @@ var topupdate = function() {
     topcanvas.draw();
 }
 
-var bottomupdate = function() {
-    var ma = ba.coordinate();
-    var mb = bb.coordinate();
-    bv.head = [ma*1 + mb*(-2), ma*2 + mb*(-4)];
-    bottommatrix.draw();
-    bottomcanvas.draw();
-}
 
 var ta = mkslider([dx, 2-dx], 1.5, topmatrix, topupdate);
 var tb = mkslider([dx, 2-dx], 0.5, topmatrix, topupdate);

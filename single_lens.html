@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
     <title>Lentille - Lens</title>
 
     <link href="css/bilingual.css" rel="stylesheet" type="text/css">
-     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="javascript/jquery.js"></script>
     <script type="text/javascript" src="javascript/optics.js"></script>
     <script type="text/javascript">
@@ -26,7 +26,7 @@
         s.addShape(_image);
         s.addShape(_lens);
         s.addShape(_primary_focal_point);
-        s.addShape(_secondary_focal_point);    
+        s.addShape(_secondary_focal_point);
     }
     </script>
 </head>
@@ -80,7 +80,7 @@
                     la relation entre la position de l'objet, \(d_o\), celle de l'image, \(d_i\),
                     et la longueur focale, \(f\), est la suivante.
                 </p>
-            </div>        
+            </div>
             <div class="centre">$$\frac{1}{d_o} + \frac{1}{d_i} = \frac{1}{f}$$</div>
 		<canvas class="centre" id="canvas" height="500" width="800">
 			Your browser does not support the html5 canvas.
@@ -89,13 +89,13 @@
                 <p> The focal length of the lens is \(f=\) <span id="focal-length"></span> units; since
                     it is <span id="f-sign"></span>, this is a <span id="converging"></span> lens.
               </p><p>
-                The object distance \(d_o=\) <span id="d-object"></span> units; 
+                The object distance \(d_o=\) <span id="d-object"></span> units;
                 since it is <span id="d-o-sign"></span> it is a <span id="o-real"></span> object.
             </p><p>
-                The image distance \(d_i=\) <span id="d-image"></span> units; 
+                The image distance \(d_i=\) <span id="d-image"></span> units;
                 since it is <span id="d-i-sign"></span> it is a <span id="i-real"></span> image.</p>
             <p>The magnification is \(M=\) <span id="magnification"></span>. Since it is a
-             <span id="m-positive"></span> number, the orientation of the image is <span id="m-same"></span> 
+             <span id="m-positive"></span> number, the orientation of the image is <span id="m-same"></span>
              that of the object.
                 Since it is a number whose absolute value is  <span id="m-greater"></span> than 1,
                 the size of the image is <span id="m-greater2"></span> than that of the object.
@@ -106,10 +106,10 @@
                 est <span id="f-signe"></span>, il s'agit d'une lentille <span id="convergente"></span>.
               </p><p>
                 La distance objet est \(d_o=\) <span id="d-objet"></span> unités; comme elle
-                est <span id="d-o-signe"></span> il s'agit d'un objet  <span id="o-reel"></span>. 
+                est <span id="d-o-signe"></span> il s'agit d'un objet  <span id="o-reel"></span>.
             </p><p>
                 La distance image est \(d_i=\) <span id="d-image-fr"></span> unités; comme elle
-                est <span id="d-i-signe"></span> il s'agit d'une image  <span id="i-reel"></span>. 
+                est <span id="d-i-signe"></span> il s'agit d'une image  <span id="i-reel"></span>.
             </p>
             <p>L'agrandissement latéral est \(M=\) <span id="agrandissement"></span>. Comme il
                 s'agit d'un nombre <span id="m-positif"></span>, l'orientation de l'image est
@@ -117,7 +117,7 @@
                 Comme il s'agit d'un nombre dont la valeur absolue est plus <span id="m-grande"></span> que
                 1, la taille de l'image est plus <span id="m-grande2"></span> que celle de l'objet.
             </p>
-            </div> 
+            </div>
             <br class="centre"/>
         </div> <!-- id text -->
         <br/>
