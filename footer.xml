@@ -1,6 +1,6 @@
 <p>
 <a class="email">
-<span class="hidden">andre.roberge<span class="replaceAT">-AT-</span>gmail.com</span>
+<span class="hidden">andre.roberge<span class="replaceAT">-AT-</span>usainteanne.ca</span>
 <img src='images/mailto.png' height="40px" width="40px"/></a>
 <a href="http://about.me/andre.roberge">André Roberge ?</a>
 <script type="text/javascript" charset="utf-8">$(document).ready(function(){$(".replaceAT").replaceWith("@");$(".email").attr("href","mailto:"+$('.hidden').text());$(".hidden").replaceWith("");});</script>
