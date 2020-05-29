@@ -1,86 +1,148 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Color models</title>
-        <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
-    </head>
-	<script type="text/javascript" async
-	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-          MathJax.Hub.Config({
-          extensions: ["tex2jax.js"],
-          jax: ["input/TeX","output/HTML-CSS"],
-          tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
-          TeX: {
-          }
-          });
-    </script>
-    <body>
-      <center>
-      <table width=640>
-	<tr><td>
-	<center>
-	  <h2> Color models</h2>
-	</center>
+<meta charset="utf-8">
 
-	<p> <b> RGB color model: </b>
-	  The diagram below enables you to create colors using various
-	  amounts of red, green, and blue.  For each of these three
-	  quantities, the
-	  slider varies between 0 and 255.
-	</p>
-	<p>
-	  <div style="text-align:center">
-        (R, G, B) = (<span id="span_rgb"></span>) <br>
-	    <canvas id="rgb" width="350" height="70">
-	      Your browser does not support HTML5 Canvas.
-	    </canvas>
-	    <script type='text/javascript' src='jslibrary/figures.js'></script>
-	    <script type='text/javascript' src='jslibrary/rgb.js'></script>
-	  </div>
-	</p>
+<head>
+    <title>Les modèles de couleur</title>
+    <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
 
-	<br>
-	<hr>
-	<br>
+</head>
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+        ]
+    },
+    TeX: {}
+});
+</script>
 
-	<p> <b> YCbCr color model: </b>
-	  The diagram below enables you to create colors using various
-	  amounts of luminance \(Y\), blue chrominance \(C_b\), and red
-	  chrominance \(C_r\).
-	  The lumninance slider moves between 0 and 255 while the chrominance
-	  sliders move between -127.5 and 127.5.
-	</p>
-	<p>
-	  <div style="text-align:center">
-        (Y, Cb, Cr) = (<span id="span_ycbcr"></span>) <br>
-	    <canvas id="ycbcr" width="350" height="70">
-	      Your browser does not support HTML5 Canvas.
-	    </canvas>
-	    <script type='text/javascript' src='jslibrary/ycbcr.js'></script>
-	  </div>
-	</p>
+<body>
 
-	<br>
-	<hr>
-	<br>
+    <div class="wrapper">
+        <header>
+            <ul class="menu">
+                <li id="logo"><a href="../index.html">André Roberge</a></li>
+                <li id="title">Les modèles de couleur</li>
+                <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
+            </ul>
+        </header>
 
-	<p> <b>HSV color model:</b>
-	  The diagram below enables you to vary the three parameters \(H\),
-	  \(S\), and \(V\) in the \(HSV\) color model.
-	</p>
-	<p>
-	  <div style="text-align:center">
+        <div id="content" class="shadow">
+            <div class="text">
+                <p>Les modèles de couleurs sont basés sur des vecteurs
+                    ayant 3 composantes (4 si on ajoute la transparence,
+                    tel qu'on le fait parfois en infographie). Les modèles principalement
+                utilisés sont les suivants.</p>
+                <p>Le modèle <a href="https://fr.wikipedia.org/wiki/Rouge_vert_bleu">
+                rouge, vert, bleu</a> désigné parfois par l'acronyme français
+                RVB mais plus souvent par l'acronyme anglais RGB (pour <em>Red, Green, Blue</em>) que nous utilisons ici. Ce modèle est celui qui est
+                utilisé pour le contrôle des couleurs par les écrans d'appareils
+            informatiques.</p>
+            <p>Le modèle <a href="https://fr.wikipedia.org/wiki/Teinte_saturation_luminosit%C3%A9">teinte, saturation, luminosité</a>,
+                plus connu par un de ses acronymes anglais tel que HSL
+                (<em>Hue, Saturation, Lightness)</em>,
+                ou encore HSV (<em>V= Value</em>), ou encore HSB (<em>B=Brightness</em>).
+                La <b>teinte</b> (<em>hue</em>) correspond à notre perception de
+                ce qu'est une couleur (par exemple: bleu), et les autres valeurs
+                correspondent à l'intensité de la couleur ainsi que si elle est
+            pâle ou foncée.</p>
+
+            <p>Filement, le modèle <a href="https://fr.wikipedia.org/wiki/YCbCr">YCbCr</a>
+                était celui qui était utilisé pour la transmission des couleurs par les anciens
+                signaux de télévision. Ce modèle est basé sur la luminance (est-ce proche
+                du blanc ou du noir?), utile pour les anciens téléviseurs noirs et blancs,
+                auquels on ajoutait deux autres valeurs correspondant à l'intensité de la couleur
+                bleue et à celle de la couleur rouge.  En faisant un <em>changement de base</em>,
+            n peut transformer un vecteur du modèle YCbCr en un vecteur du modèle RGB.</p>
+
+            <br>
+            <hr>
+            <br>
+
+            <center><h3>Le modèle RGB</h3></center>
+            <p>
+                Ci-dessous, vous pouvez changer individuellement chacune des trois
+                valeurs d'un vecteur RGB et de voir la couleur correspondante.
+                Les valeurs sont des valeurs entières, variant de 0 à 255.
+            </p>
+            <p>
+               <center>
+                (R, G, B) = (<span id="span_rgb"></span>) <br>
+                <canvas id="rgb" width="350" height="70">
+                   Your browser does not support HTML5 Canvas.
+               </canvas>
+               <script type='text/javascript' src='jslibrary/figures.js'></script>
+               <script type='text/javascript' src='jslibrary/rgb.js'></script>
+           </center>
+       </p>
+       <br>
+       <hr>
+       <br>
+
+       <center><h3>Le modèle HSV</h3></center>
+       <p>
+        Ci-dessous, vous pouvez changer individuellement chacune des trois
+        valeurs d'un vecteur HSV et de voir la couleur correspondante.
+        Les valeurs de la teinte (<em>hue</em>) varient entre 0 et 255,
+        alors que les autres valeurs varient entre 0 et 1.
+    </p>
+    <p>
+       <center>
         (H, S, V) = (<span id="span_hsv"></span>) <br>
-	    <canvas id="hsv" width="350" height="70">
-	      Your browser does not support HTML5 Canvas.
-	    </canvas>
-	    <script type='text/javascript' src='jslibrary/hsv.js'></script>
-	  </div>
-	</p>
+        <canvas id="hsv" width="350" height="70">
+           Your browser does not support HTML5 Canvas.
+       </canvas>
+       <script type='text/javascript' src='jslibrary/hsv.js'></script>
+   </center>
+</p>
 
-	</center>
-	</td></tr>
-      </table>
-      </center>
-    </body>
+
+
+<br>
+<hr>
+<br>
+
+<center><h3>Le modèle YCbCr</h3></center>
+<p>
+    Ci-dessous, vous pouvez changer individuellement chacune des trois
+    valeurs d'un vecteur YCbCr et de voir la couleur correspondante.
+    Les valeurs de la luminance varient entre 0 et 255 alors que
+    les autres valeurs varient entre -128 à 128, des valeurs négatives
+    indiquant que l'on "soustrait" du blanc un composante de cette couleur.
+</p>
+<p>
+   <center>
+    (Y, Cb, Cr) = (<span id="span_ycbcr"></span>) <br>
+    <canvas id="ycbcr" width="350" height="70">
+       Your browser does not support HTML5 Canvas.
+   </canvas>
+   <script type='text/javascript' src='jslibrary/ycbcr.js'></script>
+</center>
+</p>
+
+
+
+<br>
+<hr>
+<br>
+
+<p>Ceci a été adapté de la
+    <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/colors.html">version originale</a>
+    par
+    <a href="http://merganser.math.gvsu.edu/david/">David Austin</a>.
+</p>
+
+<br class="centre" />
+</div> <!-- text -->
+</div> <!-- content -->
+<footer id="footer" class="clear"></footer>
+</div> <!-- wrapper -->
+</body>
+
 </html>
