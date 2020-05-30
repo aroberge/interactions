@@ -1,22 +1,22 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Séries de Taylor / Taylor series</title>
-    <link href="css/bilingual.css" rel="stylesheet" type="text/css">
-    <link href="css/tangle.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <title>Séries de Taylor / Taylor series</title>
+  <link href="css/bilingual.css" rel="stylesheet" type="text/css">
+  <link href="css/tangle.css" rel="stylesheet" type="text/css">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="javascript/jquery.js"></script>
-    <script type="text/javascript" src="javascript/jquery.flot.js"></script>
-    <script type="text/javascript" src="javascript/tangle.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="javascript/jquery.js"></script>
+  <script type="text/javascript" src="javascript/jquery.flot.js"></script>
+  <script type="text/javascript" src="javascript/tangle.js"></script>
 
-    <script type="text/javascript" src="javascript/mootools.js"></script>
-    <script type="text/javascript" src="javascript/sprintf.js"></script>
-    <script type="text/javascript" src="javascript/BVTouchable.js"></script>
-    <script type="text/javascript" src="javascript/tanglekit.js"></script>
+  <script type="text/javascript" src="javascript/mootools.js"></script>
+  <script type="text/javascript" src="javascript/sprintf.js"></script>
+  <script type="text/javascript" src="javascript/BVTouchable.js"></script>
+  <script type="text/javascript" src="javascript/tanglekit.js"></script>
 
-    <style>
+  <style>
     #sin-max-index{color:#a33;}
     #cos-max-index{color:#a33;}
     #inv-max-index{color:#a33;}
@@ -25,314 +25,314 @@
     .tex-term3{color:#a33;}
     .tex-term4{color:#a33;}
     .tex-term5{color:#a33;}
-    </style>
+  </style>
 
-    <script type="text/javascript">
+  <script type="text/javascript">
 
-        var _globals = {
-              nb_terms : 5,
-              exact_data: [],
-              taylor_data: []
-        };
+    var _globals = {
+      nb_terms : 5,
+      exact_data: [],
+      taylor_data: []
+    };
 
-        _globals.compute_exact = function (fn_type) {
-            this.exact_data = [];
-            var tmp;
-            var epsilon = 1e-10;
-            switch(fn_type){
-                case "sine":
-                case "sinus":
-                    for (i = -3*Math.PI - 0.1; i < 3*Math.PI + 0.1 ; i += 0.05){
-                        this.exact_data.push([i, Math.sin(i)]);
-                    }
-                    break;
-                case "cosine":
-                case "cosinus":
-                    for (i = -3*Math.PI - 0.1; i < 3*Math.PI + 0.1 ; i += 0.05){
-                        this.exact_data.push([i, Math.cos(i)]);
-                    }
-                    break;
-                case "inverse of 1 - x":
-                case "inverse de 1 - x":
-                    for (i = -3*Math.PI - 0.1; i < 3*Math.PI + 0.1 ; i += 0.05){
-                        this.exact_data.push([i, 1/(1-i+epsilon)]);
-                    }
-                    break;
-            }
+    _globals.compute_exact = function (fn_type) {
+      this.exact_data = [];
+      var tmp;
+      var epsilon = 1e-10;
+      switch(fn_type){
+        case "sine":
+        case "sinus":
+        for (i = -3*Math.PI - 0.1; i < 3*Math.PI + 0.1 ; i += 0.05){
+          this.exact_data.push([i, Math.sin(i)]);
         }
-
-        _globals.compute_taylor = function (nb, fn_type) {
-            var _taylor, _odd, i, j, x_n;
-            this.taylor_data = [];
-            for (i = -3*Math.PI - 0.1; i < 3*Math.PI + 0.1 ; i += 0.05){
-                _odd = 1;
-                switch(fn_type){
-                    case "sine":
-                    case "sinus":
-                            _taylor = i;
-                            x_n = i;
-                        for(j = 2; j <= 2*nb-1; j+= 2){
-                            _odd = - _odd;
-                            x_n *= i/j;
-                            x_n *= i/(j+1);
-                            _taylor += _odd*x_n;
-                        }
-                        break;
-                    case "cosine":
-                    case "cosinus":
-                            _taylor = 1;
-                            x_n = 1;
-                        for(j = 2; j <= 2*nb-1; j+= 2){
-                            _odd = - _odd;
-                            x_n *= i/(j-1);
-                            x_n *= i/j;
-                            _taylor += _odd*x_n;
-                        }
-                        break;
-                    case "inverse of 1 - x":
-                    case "inverse de 1 - x":
-                            _taylor = 1;
-                            x_n = 1;
-                        for(j = 2; j <= nb; j+= 1){
-                            x_n *= i;
-                            _taylor += x_n;
-                        }
-                        break;
-                }
-                this.taylor_data.push([i, _taylor]);
-            }
-
+        break;
+        case "cosine":
+        case "cosinus":
+        for (i = -3*Math.PI - 0.1; i < 3*Math.PI + 0.1 ; i += 0.05){
+          this.exact_data.push([i, Math.cos(i)]);
         }
+        break;
+        case "inverse of 1 - x":
+        case "inverse de 1 - x":
+        for (i = -3*Math.PI - 0.1; i < 3*Math.PI + 0.1 ; i += 0.05){
+          this.exact_data.push([i, 1/(1-i+epsilon)]);
+        }
+        break;
+      }
+    }
 
-        _globals.show_equation = function(nb, fn_type){
-            switch(fn_type){
+    _globals.compute_taylor = function (nb, fn_type) {
+      var _taylor, _odd, i, j, x_n;
+      this.taylor_data = [];
+      for (i = -3*Math.PI - 0.1; i < 3*Math.PI + 0.1 ; i += 0.05){
+        _odd = 1;
+        switch(fn_type){
+          case "sine":
+          case "sinus":
+          _taylor = i;
+          x_n = i;
+          for(j = 2; j <= 2*nb-1; j+= 2){
+            _odd = - _odd;
+            x_n *= i/j;
+            x_n *= i/(j+1);
+            _taylor += _odd*x_n;
+          }
+          break;
+          case "cosine":
+          case "cosinus":
+          _taylor = 1;
+          x_n = 1;
+          for(j = 2; j <= 2*nb-1; j+= 2){
+            _odd = - _odd;
+            x_n *= i/(j-1);
+            x_n *= i/j;
+            _taylor += _odd*x_n;
+          }
+          break;
+          case "inverse of 1 - x":
+          case "inverse de 1 - x":
+          _taylor = 1;
+          x_n = 1;
+          for(j = 2; j <= nb; j+= 1){
+            x_n *= i;
+            _taylor += x_n;
+          }
+          break;
+        }
+        this.taylor_data.push([i, _taylor]);
+      }
+
+    }
+
+    _globals.show_equation = function(nb, fn_type){
+      switch(fn_type){
 /*  While it would create less code repetition to hide() them all first
     and only show() the relevant one in the case statement, doing so
     can make the page jump "up".   */
-                case "sine":
-                case "sinus":
-                    $("#sin-fn").show();
-                    $("#cos-fn").hide();
-                    $("#inv-fn").hide();
-                    break;
-                case "cosine":
-                case "cosinus":
-                    $("#cos-fn").show();
-                    $("#sin-fn").hide();
-                    $("#inv-fn").hide();
-                    break;
-                case "inverse of 1 - x":
-                case "inverse de 1 - x":
-                    $("#inv-fn").show();
-                    $("#sin-fn").hide();
-                    $("#cos-fn").hide();
-                    break;
-            }
-            $(".tex-term2").hide();  /* as some terms remain, this won't produce page jumps */
-            $(".tex-term3").hide();
-            $(".tex-term4").hide();
-            $(".tex-term5").hide();
-            if( nb > 5){
-                nb = 5;
-            }
-            switch(nb){
-                case 5:
-                    $(".tex-term5").show();
-                case 4:
-                    $(".tex-term4").show();
-                case 3:
-                    $(".tex-term3").show();
-                case 2:
-                    $(".tex-term2").show();
-                case 1:
-                    break;
-            }
+    case "sine":
+    case "sinus":
+    $("#sin-fn").show();
+    $("#cos-fn").hide();
+    $("#inv-fn").hide();
+    break;
+    case "cosine":
+    case "cosinus":
+    $("#cos-fn").show();
+    $("#sin-fn").hide();
+    $("#inv-fn").hide();
+    break;
+    case "inverse of 1 - x":
+    case "inverse de 1 - x":
+    $("#inv-fn").show();
+    $("#sin-fn").hide();
+    $("#cos-fn").hide();
+    break;
+  }
+  $(".tex-term2").hide();  /* as some terms remain, this won't produce page jumps */
+  $(".tex-term3").hide();
+  $(".tex-term4").hide();
+  $(".tex-term5").hide();
+  if( nb > 5){
+    nb = 5;
+  }
+  switch(nb){
+    case 5:
+    $(".tex-term5").show();
+    case 4:
+    $(".tex-term4").show();
+    case 3:
+    $(".tex-term3").show();
+    case 2:
+    $(".tex-term2").show();
+    case 1:
+    break;
+  }
+}
+
+_globals.update = function(nb, fn_type){
+  this.compute_exact(fn_type);
+  this.compute_taylor(nb, fn_type);
+  this.show_equation(nb, fn_type);
+  this.plot.setData([this.exact_data, this.taylor_data]);
+  this.plot.draw();
+}
+
+
+function setUpTangle () {
+  var element, tangle_en, tangle_fr;
+
+  element = document.getElementById("series_fr");
+  tangle_fr = new Tangle(element, {
+    initialize: function () {
+      this.nb_terms = _globals.nb_terms;
+      this.fn_type = "sinus";
+    },
+    update: function () {
+      $("#sin-max-index").html(this.nb_terms);
+      $("#cos-max-index").html(this.nb_terms);
+      $("#inv-max-index").html(this.nb_terms-1);
+      if (tangle_en != undefined){
+        tangle_en.setValue("nb_terms", this.nb_terms);
+        switch(this.fn_type){
+          case "sinus":
+          tangle_en.setValue("fn_type", "sine");
+          break;
+          case "cosinus":
+          tangle_en.setValue("fn_type", "cosine");
+          break;
+          case "inverse de 1 - x":
+          tangle_en.setValue("fn_type", "inverse of 1 - x");
+          break;
         }
+      }
+      _globals.update(this.nb_terms, this.fn_type);
+    }
+  });
 
-        _globals.update = function(nb, fn_type){
-            this.compute_exact(fn_type);
-            this.compute_taylor(nb, fn_type);
-            this.show_equation(nb, fn_type);
-            this.plot.setData([this.exact_data, this.taylor_data]);
-            this.plot.draw();
-        }
+  element = document.getElementById("series_en");
+  tangle_en = new Tangle(element, {
+    initialize: function () {
+      this.nb_terms = _globals.nb_terms;
+      this.fn_type = "sine";
+    },
+    update: function () {
+      var info;
+      $("#sin-max-index").html(this.nb_terms);
+      $("#cos-max-index").html(this.nb_terms);
+      $("#inv-max-index").html(this.nb_terms-1);
+      tangle_fr.setValue("nb_terms", this.nb_terms);
+      switch(this.fn_type){
+        case "sine":
+        tangle_fr.setValue("fn_type", "sinus");
+        break;
+        case "cosine":
+        tangle_fr.setValue("fn_type", "cosinus");
+        break;
+        case "inverse of 1 - x":
+        tangle_fr.setValue("fn_type", "inverse de 1 - x");
+        break;
+      }
+      _globals.update(this.nb_terms, this.fn_type);
+    }
+  });
 
+}
+</script>
 
-        function setUpTangle () {
-            var element, tangle_en, tangle_fr;
-
-            element = document.getElementById("series_fr");
-            tangle_fr = new Tangle(element, {
-                initialize: function () {
-                    this.nb_terms = _globals.nb_terms;
-                    this.fn_type = "sinus";
-                },
-                update: function () {
-                    $("#sin-max-index").html(this.nb_terms);
-                    $("#cos-max-index").html(this.nb_terms);
-                    $("#inv-max-index").html(this.nb_terms-1);
-                    if (tangle_en != undefined){
-                        tangle_en.setValue("nb_terms", this.nb_terms);
-                        switch(this.fn_type){
-                            case "sinus":
-                                tangle_en.setValue("fn_type", "sine");
-                                break;
-                            case "cosinus":
-                                tangle_en.setValue("fn_type", "cosine");
-                                break;
-                            case "inverse de 1 - x":
-                                tangle_en.setValue("fn_type", "inverse of 1 - x");
-                                break;
-                        }
-                    }
-                    _globals.update(this.nb_terms, this.fn_type);
-                }
-            });
-
-            element = document.getElementById("series_en");
-            tangle_en = new Tangle(element, {
-                initialize: function () {
-                    this.nb_terms = _globals.nb_terms;
-                    this.fn_type = "sine";
-                },
-                update: function () {
-                    var info;
-                    $("#sin-max-index").html(this.nb_terms);
-                    $("#cos-max-index").html(this.nb_terms);
-                    $("#inv-max-index").html(this.nb_terms-1);
-                    tangle_fr.setValue("nb_terms", this.nb_terms);
-                    switch(this.fn_type){
-                        case "sine":
-                            tangle_fr.setValue("fn_type", "sinus");
-                            break;
-                        case "cosine":
-                            tangle_fr.setValue("fn_type", "cosinus");
-                            break;
-                        case "inverse of 1 - x":
-                            tangle_fr.setValue("fn_type", "inverse de 1 - x");
-                            break;
-                    }
-                    _globals.update(this.nb_terms, this.fn_type);
-                }
-            });
-
-        }
-    </script>
-
- </head>
-    <body onload="setUpTangle();">
-<div class="wrapper">
-<header>
-<ul class="menu">
-<li id="logo"><a href="index.html">André Roberge</a></li>
-<li id="title"> Séries de Taylor - <span class="serif">Taylor series</span></li>
-<li> <a href="http://usainteanne.ca"><img class="sainte-anne" src="images/sainte-anne.png"/></a></li>
-</ul>
-</header>
+</head>
+<body onload="setUpTangle();">
+  <div class="wrapper">
+    <header>
+      <ul class="menu">
+        <li id="logo"><a href="index.html">André Roberge</a></li>
+        <li id="title"> Séries de Taylor - <span class="serif">Taylor series</span></li>
+        <li> <a href="http://usainteanne.ca"><img class="sainte-anne" src="images/sainte-anne.png"/></a></li>
+      </ul>
+    </header>
     <div id="content" class="shadow">
-        <div class="text">
-            <div class="english">
-                <h2>Taylor series</h2>
-                <p>A Taylor series is a representation of a function expressed as a potentially infinite sum of powers
-                    of its variable, where each
-                    term is obtained by calculating either the value of a function as a given point or one of its
-                    derivatives. If the point chosen is 0, it is called a MacLaurin series.
-                    One can often obtain a good approximation of a function in a neighbourhood of a point
-                    using only a few terms.</p>
-                <p  id="series_en">For example, the graph below gives an approximation using the first
-                    <span data-var="nb_terms" class="TKAdjustableNumber" data-min="1" data-max="15"></span> terms
-                    for a
-                <span class="ExpandingList" data-var="fn_type" data-items="sine/cosine/inverse of 1 - x"></span> function
-                from its value at the origin as well as those of its various derivatives.</p>
-            </div>
+      <div class="text">
+        <div class="english">
+          <h2>Taylor series</h2>
+          <p>A Taylor series is a representation of a function expressed as a potentially infinite sum of powers
+            of its variable, where each
+            term is obtained by calculating either the value of a function as a given point or one of its
+            derivatives. If the point chosen is 0, it is called a MacLaurin series.
+            One can often obtain a good approximation of a function in a neighbourhood of a point
+          using only a few terms.</p>
+          <p  id="series_en">For example, the graph below gives an approximation using the first
+            <span data-var="nb_terms" class="TKAdjustableNumber" data-min="1" data-max="15"></span> terms
+            for a
+            <span class="ExpandingList" data-var="fn_type" data-items="sine/cosine/inverse of 1 - x"></span> function
+          from its value at the origin as well as those of its various derivatives.</p>
+        </div>
 
-            <div class="french">
-                <h2>Séries de taylor</h2>
-                <p>Les séries de Taylor sont des représentation d'une fonction exprimées par une
-                    somme (possiblement infinie) de puissance de la variable, où chaque terme
-                    est obtenu soit de la valeur de la fonction en un point ou de ses dérivées successives
-                    en ce même point.  Si le point choisi est zéro, on dit que c'est une série de MacLaurin.
-                    On peut souvent obtenir une bonne approximation au voisinage d'un point en ne retenant que
-                    quelques termes.</p>
-                <p  id="series_fr">Par exemple, le graphique ci-dessous donne une approximation pour les
-                    <span data-var="nb_terms" class="TKAdjustableNumber" data-min="1" data-max="15"></span> premiers termes de
-                    la fonction
-                    <span class="ExpandingList" data-var="fn_type" data-items="sinus/cosinus/inverse de 1 - x"></span>
-                    évaluée près de l'origine.</p>
-            </div>
+        <div class="french">
+          <h2>Séries de taylor</h2>
+          <p>Les séries de Taylor sont des représentation d'une fonction exprimées par une
+            somme (possiblement infinie) de puissance de la variable, où chaque terme
+            est obtenu soit de la valeur de la fonction en un point ou de ses dérivées successives
+            en ce même point.  Si le point choisi est zéro, on dit que c'est une série de MacLaurin.
+            On peut souvent obtenir une bonne approximation au voisinage d'un point en ne retenant que
+          quelques termes.</p>
+          <p  id="series_fr">Par exemple, le graphique ci-dessous donne une approximation pour les
+            <span data-var="nb_terms" class="TKAdjustableNumber" data-min="1" data-max="15"></span> premiers termes de
+            la fonction
+            <span class="ExpandingList" data-var="fn_type" data-items="sinus/cosinus/inverse de 1 - x"></span>
+          évaluée près de l'origine.</p>
+        </div>
 
-            <br class="centre"/>
-            <div class="centre"><span id="sin-fn">$$\sin(x) \approx
-                \sum_{n=1}^\cssId{sin-max-index}{5} \frac{(-1)^{n+1} x^{2n-1}}{(2n-1)!} =
-                \class{tex-term1}{x} \class{tex-term2}{-\frac{x^3}{6}}
-                \class{tex-term3}{+\frac{x^5}{120}}
-                \class{tex-term4}{-\frac{x^7}{5040}}
-                \class{tex-term5}{+\ldots}
-                $$</span><br class="centre"/><span id="cos-fn">$$\cos(x)\approx
-                \sum_{n=1}^\cssId{cos-max-index}{5} \frac{(-1)^{n+1} x^{2n}}{(2n)!} =
-                \class{tex-term1}{1} \class{tex-term2}{-\frac{x^2}{2}}
-                \class{tex-term3}{+\frac{x^4}{24} }
-                \class{tex-term4}{-\frac{x^6}{720}}
-                \class{tex-term5}{+\ldots}
-                $$</span><br class="centre"/><span id="inv-fn">$$\frac{1}{1-x}\approx
-                \sum_{n=0}^\cssId{inv-max-index}{5} x^{n} =
-                \class{tex-term1}{1} \class{tex-term2}{+x}
-                \class{tex-term3}{+x^2 }
-                \class{tex-term4}{+x^3}
-                \class{tex-term5}{+\ldots}
-                $$</span></div>
+        <br class="centre"/>
+        <div class="centre"><span id="sin-fn">$$\sin(x) \approx
+          \sum_{n=1}^\cssId{sin-max-index}{5} \frac{(-1)^{n+1} x^{2n-1}}{(2n-1)!} =
+          \class{tex-term1}{x} \class{tex-term2}{-\frac{x^3}{6}}
+          \class{tex-term3}{+\frac{x^5}{120}}
+          \class{tex-term4}{-\frac{x^7}{5040}}
+          \class{tex-term5}{+\ldots}
+        $$</span><br class="centre"/><span id="cos-fn">$$\cos(x)\approx
+          \sum_{n=1}^\cssId{cos-max-index}{5} \frac{(-1)^{n+1} x^{2n}}{(2n)!} =
+          \class{tex-term1}{1} \class{tex-term2}{-\frac{x^2}{2}}
+          \class{tex-term3}{+\frac{x^4}{24} }
+          \class{tex-term4}{-\frac{x^6}{720}}
+          \class{tex-term5}{+\ldots}
+        $$</span><br class="centre"/><span id="inv-fn">$$\frac{1}{1-x}\approx
+          \sum_{n=0}^\cssId{inv-max-index}{5} x^{n} =
+          \class{tex-term1}{1} \class{tex-term2}{+x}
+          \class{tex-term3}{+x^2 }
+          \class{tex-term4}{+x^3}
+          \class{tex-term5}{+\ldots}
+        $$</span></div>
 
-            <div class="centre" id="placeholder" style="width:600px;height:300px"></div>
-            <br class="centre"/>
-            <div class="english">
-                <p>Note that the radius of convergence for the expansion of \(\displaystyle\frac{1}{1-x}\) is \(|x| \lt 1\).</p>
-            </div>
-            <div class="french">
-                <p>Notez que le rayon de convergence pour l'expansion de \(\displaystyle\frac{1}{1-x}\) est \(|x| \lt 1\).</p>
-            </div>
+        <div class="centre" id="placeholder" style="width:600px;height:300px"></div>
+        <br class="centre"/>
+        <div class="english">
+          <p>Note that the radius of convergence for the expansion of \(\displaystyle\frac{1}{1-x}\) is \(|x| \lt 1\).</p>
+        </div>
+        <div class="french">
+          <p>Notez que le rayon de convergence pour l'expansion de \(\displaystyle\frac{1}{1-x}\) est \(|x| \lt 1\).</p>
+        </div>
 
-                        <br class="centre"/>
-        </div>  <!-- class text -->
+        <br class="centre"/>
+      </div>  <!-- class text -->
     </div> <!-- id wrap -->
 
 
-<script type="text/javascript">
-$(function () {
+    <script type="text/javascript">
+      $(function () {
 
-    _globals.plot = $.plot($("#placeholder"), [
-        { label: "exact",  data: _globals.exact_data},
-        { label: "Taylor",  data: _globals.taylor_data}
-    ], {
-        series: {
-            lines: { show: true },
-            points: { show: false }
-        },
-        colors: ["#4d4da7", "#cbcb4b"],
-        xaxis: {
-            ticks: [[-3*Math.PI, "-3\u03c0"], [-5*Math.PI/2, "-5\u03c0/2"], [-Math.PI * 2, "-2\u03c0"],
-            [-Math.PI * 3/2, "-3\u03c0/2"], [-Math.PI, "-\u03c0"],
-            [-Math.PI/2, "-\u03c0/2"], [-1, "-1"], [0, "0"], [1, "1"],
-            [Math.PI/2, "\u03c0/2"], [Math.PI, "\u03c0"], [Math.PI * 3/2, "3\u03c0/2"], [Math.PI * 2, "2\u03c0"],
-            [5*Math.PI/2, "5\u03c0/2"], [3*Math.PI, "3\u03c0"]
-            ],
-            min: -3*Math.PI - 0.1,
-            max: 3*Math.PI + 0.1
-        },
-        yaxis: {
-            min: -3,
-            max: 3
-        },
-        grid: {
-            backgroundColor: { colors: ["#fff", "#f0f0f0"] }
-        }
-    });
-});
-</script>
+        _globals.plot = $.plot($("#placeholder"), [
+                               { label: "exact",  data: _globals.exact_data},
+                               { label: "Taylor",  data: _globals.taylor_data}
+                               ], {
+                                series: {
+                                  lines: { show: true },
+                                  points: { show: false }
+                                },
+                                colors: ["#4d4da7", "#cbcb4b"],
+                                xaxis: {
+                                  ticks: [[-3*Math.PI, "-3\u03c0"], [-5*Math.PI/2, "-5\u03c0/2"], [-Math.PI * 2, "-2\u03c0"],
+                                  [-Math.PI * 3/2, "-3\u03c0/2"], [-Math.PI, "-\u03c0"],
+                                  [-Math.PI/2, "-\u03c0/2"], [-1, "-1"], [0, "0"], [1, "1"],
+                                  [Math.PI/2, "\u03c0/2"], [Math.PI, "\u03c0"], [Math.PI * 3/2, "3\u03c0/2"], [Math.PI * 2, "2\u03c0"],
+                                  [5*Math.PI/2, "5\u03c0/2"], [3*Math.PI, "3\u03c0"]
+                                  ],
+                                  min: -3*Math.PI - 0.1,
+                                  max: 3*Math.PI + 0.1
+                                },
+                                yaxis: {
+                                  min: -3,
+                                  max: 3
+                                },
+                                grid: {
+                                  backgroundColor: { colors: ["#fff", "#f0f0f0"] }
+                                }
+                              });
+      });
+    </script>
     <footer id="footer" class="clear"></footer>
-</div> <!-- wrapper -->
+  </div> <!-- wrapper -->
 </body>
 <script type="text/javascript" charset="utf-8">
-$('#footer').load('footer.xml');
+  $('#footer').load('footer.xml');
 </script>
- </body>
+</body>
 </html>

@@ -3,84 +3,84 @@
 <meta charset="utf-8">
 
 <head>
-    <title>Transformation du plan</title>
-    <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
+  <title>Transformation du plan</title>
+  <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
 
 </head>
 <script type="text/javascript" async
 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-        inlineMath: [
-        ["$", "$"],
-        ["\\(", "\\)"]
-        ]
-    },
-    TeX: {}
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [
+    ["$", "$"],
+    ["\\(", "\\)"]
+    ]
+  },
+  TeX: {}
 });
 </script>
 
 <body>
 
-    <div class="wrapper">
-        <header>
-            <ul class="menu">
-                <li id="logo"><a href="../index.html">André Roberge</a></li>
-                <li id="title">Transformation du plan</li>
-                <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
-            </ul>
-        </header>
+  <div class="wrapper">
+    <header>
+      <ul class="menu">
+        <li id="logo"><a href="../index.html">André Roberge</a></li>
+        <li id="title">Transformation du plan</li>
+        <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
+      </ul>
+    </header>
 
-        <div id="content" class="shadow">
-            <div class="text">
+    <div id="content" class="shadow">
+      <div class="text">
 
-	<p>Cette démonstration interactive permet de voir l'effet d'une
+       <p>Cette démonstration interactive permet de voir l'effet d'une
         transformation produite par une matrice
         $${\mathbf A} = \begin{bmatrix}a & b\\c & d\end{bmatrix}$$
-      sur le plan, ou sur un simple vecteur.
-  </p>
-  <p>Initialement, la matrice \({\mathbf A}\) est la matrice identité.
-   Vous pouvez modifier les coefficents individuels de cette matrice
-et voir les changement correspondants dans le plan.</p>
-   <p>Vous pouvez également changer la position du vecteur de couleur
-    rouge dans l'image à gauche pour voir sa valeur transformée
-    dans l'image à droite.
-	</p>
+        sur le plan, ou sur un simple vecteur.
+      </p>
+      <p>Initialement, la matrice \({\mathbf A}\) est la matrice identité.
+       Vous pouvez modifier les coefficents individuels de cette matrice
+     et voir les changement correspondants dans le plan.</p>
+     <p>Vous pouvez également changer la position du vecteur de couleur
+      rouge dans l'image à gauche pour voir sa valeur transformée
+      dans l'image à droite.
+    </p>
 
-	<p>
-	  <center>
-	    <canvas id="bottomsliders" width="550" height="120">
-	      Your browser does not support HTML5 Canvas.
-	    </canvas>
-	    <br>
-	    <canvas id="bottomleft" width="300" height="300" hspace=5>
-	      Your browser does not support HTML5 Canvas.
-	    </canvas>
-	    <canvas id="bottomright" width="300" height="300" hspace=5>
-	      Your browser does not support HTML5 Canvas.
-	    </canvas>
-	    <script type='text/javascript' src="jslibrary/figures.js"></script>
-	    <script type='text/javascript' src="jslibrary/mult.c.js"></script>
-	  </center>
-	<p>
+    <p>
+     <center>
+       <canvas id="bottomsliders" width="550" height="120">
+         Your browser does not support HTML5 Canvas.
+       </canvas>
+       <br>
+       <canvas id="bottomleft" width="300" height="300" hspace=5>
+         Your browser does not support HTML5 Canvas.
+       </canvas>
+       <canvas id="bottomright" width="300" height="300" hspace=5>
+         Your browser does not support HTML5 Canvas.
+       </canvas>
+       <script type='text/javascript' src="jslibrary/figures.js"></script>
+       <script type='text/javascript' src="jslibrary/mult.c.js"></script>
+     </center>
+     <p>
 
-    <br>
-    <hr>
-    <br>
+      <br>
+      <hr>
+      <br>
 
 
-                <p>Ceci a été adapté de la
-                    <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/matrixmult.html">version originale</a>
-                    par
-                    <a href="http://merganser.math.gvsu.edu/david/">David Austin</a>.
-                </p>
+      <p>Ceci a été adapté de la
+        <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/matrixmult.html">version originale</a>
+        par
+        <a href="http://merganser.math.gvsu.edu/david/">David Austin</a>.
+      </p>
 
-                <br class="centre" />
-            </div> <!-- text -->
-        </div> <!-- content -->
-        <footer id="footer" class="clear"></footer>
-    </div> <!-- wrapper -->
+      <br class="centre" />
+    </div> <!-- text -->
+  </div> <!-- content -->
+  <footer id="footer" class="clear"></footer>
+</div> <!-- wrapper -->
 </body>
 </html>

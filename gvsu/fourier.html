@@ -3,80 +3,80 @@
 <meta charset="utf-8">
 
 <head>
-    <title>Coefficients de Fourier</title>
-    <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
+  <title>Coefficients de Fourier</title>
+  <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
 
 </head>
 <script type="text/javascript" async
 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-        inlineMath: [
-        ["$", "$"],
-        ["\\(", "\\)"]
-        ]
-    },
-    TeX: {}
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [
+    ["$", "$"],
+    ["\\(", "\\)"]
+    ]
+  },
+  TeX: {}
 });
 </script>
 
 <body>
 
-    <div class="wrapper">
-        <header>
-            <ul class="menu">
-                <li id="logo"><a href="../index.html">André Roberge</a></li>
-                <li id="title">Coefficients de Fourier</li>
-                <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
-            </ul>
-        </header>
+  <div class="wrapper">
+    <header>
+      <ul class="menu">
+        <li id="logo"><a href="../index.html">André Roberge</a></li>
+        <li id="title">Coefficients de Fourier</li>
+        <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
+      </ul>
+    </header>
 
-        <div id="content" class="shadow">
-            <div class="text">
+    <div id="content" class="shadow">
+      <div class="text">
 
-            <p>Dans la démonstration <a href="../fourier.html">séries de Fourier</a>,
-            vous pouvez voir comment on peut approximer trois différentes
+        <p>Dans la démonstration <a href="../fourier.html">séries de Fourier</a>,
+          vous pouvez voir comment on peut approximer trois différentes
         fonctions à l'aide d'une série de Fourier contenant plusieurs termes.</p>
         <p>Ici, nous voyons une série de Fourier partielle contenant seulement
         quatre termes dont un est une constante:</p>
         $$
         f(x) = a_0  + a_1 \cos(x) + a_2 \cos(2x) + a_3 \cos(3x)
         $$
-	<p>Vous pouvez changer la valeur de chacun des quatre coefficients
-        \(a_0\), \(a_1\), \(a_2\), et \(a_3\),
-        pour voir comment on peut produire plusieurs fonctions d'apparences très
-        différentes.
-	</p>
-	<p>
-	  <center>
-	    <canvas id="fourier" width="400" height="400">
-	      Your browser does not support HTML5 Canvas.
-	    </canvas>
-	    <script type='text/javascript' src='jslibrary/figures.js'></script>
-	    <script type='text/javascript' src='jslibrary/fourier.js'></script>
-	  </center>
-	</p>
+        <p>Vous pouvez changer la valeur de chacun des quatre coefficients
+          \(a_0\), \(a_1\), \(a_2\), et \(a_3\),
+          pour voir comment on peut produire plusieurs fonctions d'apparences très
+          différentes.
+        </p>
+        <p>
+         <center>
+           <canvas id="fourier" width="400" height="400">
+             Your browser does not support HTML5 Canvas.
+           </canvas>
+           <script type='text/javascript' src='jslibrary/figures.js'></script>
+           <script type='text/javascript' src='jslibrary/fourier.js'></script>
+         </center>
+       </p>
 
 
 
-    <br>
-    <hr>
-    <br>
+       <br>
+       <hr>
+       <br>
 
 
-                <p>Ceci a été adapté de la
-                    <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/fourier.html">version originale</a>
-                    par
-                    <a href="http://merganser.math.gvsu.edu/david/">David Austin</a>.
-                </p>
+       <p>Ceci a été adapté de la
+        <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/fourier.html">version originale</a>
+        par
+        <a href="http://merganser.math.gvsu.edu/david/">David Austin</a>.
+      </p>
 
-                <br class="centre" />
-            </div> <!-- text -->
-        </div> <!-- content -->
-        <footer id="footer" class="clear"></footer>
-    </div> <!-- wrapper -->
+      <br class="centre" />
+    </div> <!-- text -->
+  </div> <!-- content -->
+  <footer id="footer" class="clear"></footer>
+</div> <!-- wrapper -->
 </body>
 </html>
 

@@ -1,136 +1,136 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Miroir - mirror</title>
+  <meta charset="utf-8">
+  <title>Miroir - mirror</title>
 
-    <link href="css/bilingual.css" rel="stylesheet" type="text/css">
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script src="javascript/jquery.js"></script>
-    <script type="text/javascript" src="javascript/optics.js"></script>
-    <script type="text/javascript">
+  <link href="css/bilingual.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="javascript/jquery.js"></script>
+  <script type="text/javascript" src="javascript/optics.js"></script>
+  <script type="text/javascript">
     function init() {
-        var s = new CanvasState(document.getElementById('canvas'));
-        var _mirror = new OpticalComponent(300, s.width, s.height, s.ctx);
-        _mirror.is_mirror();
-        var _object = new OpticalComponent(100, s.width, s.height, s.ctx);
-        _object.is_object(_mirror);
-        var _image = new OpticalComponent(200, s.width, s.height, s.ctx);
-        _image.is_image(_object);
-        var _primary_focal_point = new OpticalComponent(0, s.width, s.height, s.ctx);
-        _primary_focal_point.is_primary_focal_point(_mirror);
-        var _mirror_center = new OpticalComponent(0, s.width, s.height, s.ctx);
-        _mirror_center.is_mirror_center(_mirror);
+      var s = new CanvasState(document.getElementById('canvas'));
+      var _mirror = new OpticalComponent(300, s.width, s.height, s.ctx);
+      _mirror.is_mirror();
+      var _object = new OpticalComponent(100, s.width, s.height, s.ctx);
+      _object.is_object(_mirror);
+      var _image = new OpticalComponent(200, s.width, s.height, s.ctx);
+      _image.is_image(_object);
+      var _primary_focal_point = new OpticalComponent(0, s.width, s.height, s.ctx);
+      _primary_focal_point.is_primary_focal_point(_mirror);
+      var _mirror_center = new OpticalComponent(0, s.width, s.height, s.ctx);
+      _mirror_center.is_mirror_center(_mirror);
 
-        s.addShape(_object);
-        s.addShape(_image);
-        s.addShape(_mirror);
-        s.addShape(_primary_focal_point);
-        s.addShape(_mirror_center);
+      s.addShape(_object);
+      s.addShape(_image);
+      s.addShape(_mirror);
+      s.addShape(_primary_focal_point);
+      s.addShape(_mirror_center);
     }
-    </script>
+  </script>
 
 </head>
 
 <body onload="init();">
-<div class="wrapper">
-	<header>
-		<ul class="menu">
-			<li id="logo"><a href="index.html">André Roberge</a></li>
-			<li id="title"> Miroir sphérique- <span class="serif">Spherical Mirror</span></li>
-			<li> <a href="http://usainteanne.ca"><img class="sainte-anne" src="images/sainte-anne.png"/></a></li>
-		</ul>
-	</header>
-    <div id="content" class="shadow">
-        <div class="text">
-            <div class="english">
-                <h3>Spherical Mirror</h3>
-                <p>In geometric optics, we approximate how light propagates using straight
-                    lines known as rays.  While two lines are sufficient to determine
-                    an intersection point, we often use up to four, known as principal rays,
-                    to determine the position of an image formed by a spherical mirror.
-                    Below is such an example.  Feel free to interact with it, changing
-                    the position of the mirror, that of the object (represented by the green arrow)
-                    or the focal lens of the mirror - perhaps even changing it from a concave
-                    mirror into a convex one.  In doing so, observe how the image
-                    (represented by a blue arrow) changes and how the information on the
-                    graph, and in the text below, is updated accordingly.
-                </p>
-                <p>In the geometric optics approximation, the equation that describes the
-                    relation between the position of the object, \(d_o\), that of the image, \(d_i\),
-                    and the focal length, \(f\), is the following.
-                </p>
-            </div>
-            <div class="french">
-                <h3>Miroir sphérique</h3>
-                <p>L'optique géométrique consiste à considérer la lumière comme se propageant
-                    le long de segments de droite, connus sous le nom de rayons.
-                    Deux rayons suffisent pour déterminer la position d'une image; cependant,
-                    pour des miroirs,
-                    nous utiliserons habituellement jusqu'à quatre rayons, connus sous le nom de
-                    rayons principaux, pour le faire.  Ci-dessous vous verrez un
-                    exemple de formation d'image en utilisant un miroir.  N'hésitez
-                    pas à interréagir avec cette image, que ce soit en en changeant la
-                    position du miroir, celle de l'objet (représenté par une
-                    flèche verte) ou la longueur focale du miroir - possiblement
-                    pour la changer d'un miroir concave à un miroir convexe.
-                    Ce faisant, observez comment l'image (représentée par une flèche bleue)
-                    change et comment l'information sur le graphique, ainsi que dans le texte
-                    qui suit, est mise à jour automatiquement.
-                </p>
-                <p>Dans l'approximation de l'optique géométrique, l'équation qui gouverne
-                    la relation entre la position de l'objet, \(d_o\), celle de l'image, \(d_i\),
-                    et la longueur focale, \(f\), est la suivante.
-                </p>
-            </div>
-            <div class="centre">$$\frac{1}{d_o} + \frac{1}{d_i} = \frac{1}{f}$$</div>
-		<canvas class="centre" id="canvas" height="500" width="800">
-			Your browser does not support the html5 canvas.
-		</canvas>
-            <div class="english">
-                <p> The focal length of the <span class="lens">lens</span> is \(f=\) <span id="focal-length"></span> units; since
-                    it is <span id="f-sign"></span>, this is a <span id="converging"></span> <span class="lens">lens</span>.
-              </p><p>
-                The object distance \(d_o=\) <span id="d-object"></span> units;
-                since it is <span id="d-o-sign"></span> it is a <span id="o-real"></span> object.
-            </p><p>
-                The image distance \(d_i=\) <span id="d-image"></span> units;
-                since it is <span id="d-i-sign"></span> it is a <span id="i-real"></span> image.</p>
-            <p>The magnification is \(M=\) <span id="magnification"></span>. Since it is a
-             <span id="m-positive"></span> number, the orientation of the image is <span id="m-same"></span>
-             that of the object.
-                Since it is a number whose absolute value is  <span id="m-greater"></span> than 1,
-                the size of the image is <span id="m-greater2"></span> than that of the object.
-            </p>
-            </div>
-            <div class="french">
-                <p> La distance focale <span class="dela">de la</span> <span class="lentille">lentille</span> est \(f=\) <span id="longueur-focale"></span> unités; puisqu'elle
-                est <span id="f-signe"></span>, il s'agit d'<span class="une">une</span>
-                <span class="lentille">lentille</span> <span id="convergente"></span>.
-              </p><p>
-                La distance objet est \(d_o=\) <span id="d-objet"></span> unités; comme elle
-                est <span id="d-o-signe"></span> il s'agit d'un objet  <span id="o-reel"></span>.
-            </p><p>
-                La distance image est \(d_i=\) <span id="d-image-fr"></span> unités; comme elle
-                est <span id="d-i-signe"></span> il s'agit d'une image  <span id="i-reel"></span>.
-            </p>
-            <p>L'agrandissement latéral est \(M=\) <span id="agrandissement"></span>. Comme il
-                s'agit d'un nombre <span id="m-positif"></span>, l'orientation de l'image est
-                <span id="m-meme"></span> celle de l'objet.
-                Comme il s'agit d'un nombre dont la valeur absolue est plus <span id="m-grande"></span> que
-                1, la taille de l'image est plus <span id="m-grande2"></span> que celle de l'objet.
-            </p>
-            </div>
-            <br class="centre"/>
-        </div> <!-- id text -->
-        <br/>
-	</div>  <!-- id content -->
+  <div class="wrapper">
+   <header>
+    <ul class="menu">
+     <li id="logo"><a href="index.html">André Roberge</a></li>
+     <li id="title"> Miroir sphérique- <span class="serif">Spherical Mirror</span></li>
+     <li> <a href="http://usainteanne.ca"><img class="sainte-anne" src="images/sainte-anne.png"/></a></li>
+   </ul>
+ </header>
+ <div id="content" class="shadow">
+  <div class="text">
+    <div class="english">
+      <h3>Spherical Mirror</h3>
+      <p>In geometric optics, we approximate how light propagates using straight
+        lines known as rays.  While two lines are sufficient to determine
+        an intersection point, we often use up to four, known as principal rays,
+        to determine the position of an image formed by a spherical mirror.
+        Below is such an example.  Feel free to interact with it, changing
+        the position of the mirror, that of the object (represented by the green arrow)
+        or the focal lens of the mirror - perhaps even changing it from a concave
+        mirror into a convex one.  In doing so, observe how the image
+        (represented by a blue arrow) changes and how the information on the
+        graph, and in the text below, is updated accordingly.
+      </p>
+      <p>In the geometric optics approximation, the equation that describes the
+        relation between the position of the object, \(d_o\), that of the image, \(d_i\),
+        and the focal length, \(f\), is the following.
+      </p>
+    </div>
+    <div class="french">
+      <h3>Miroir sphérique</h3>
+      <p>L'optique géométrique consiste à considérer la lumière comme se propageant
+        le long de segments de droite, connus sous le nom de rayons.
+        Deux rayons suffisent pour déterminer la position d'une image; cependant,
+        pour des miroirs,
+        nous utiliserons habituellement jusqu'à quatre rayons, connus sous le nom de
+        rayons principaux, pour le faire.  Ci-dessous vous verrez un
+        exemple de formation d'image en utilisant un miroir.  N'hésitez
+        pas à interréagir avec cette image, que ce soit en en changeant la
+        position du miroir, celle de l'objet (représenté par une
+        flèche verte) ou la longueur focale du miroir - possiblement
+        pour la changer d'un miroir concave à un miroir convexe.
+        Ce faisant, observez comment l'image (représentée par une flèche bleue)
+        change et comment l'information sur le graphique, ainsi que dans le texte
+        qui suit, est mise à jour automatiquement.
+      </p>
+      <p>Dans l'approximation de l'optique géométrique, l'équation qui gouverne
+        la relation entre la position de l'objet, \(d_o\), celle de l'image, \(d_i\),
+        et la longueur focale, \(f\), est la suivante.
+      </p>
+    </div>
+    <div class="centre">$$\frac{1}{d_o} + \frac{1}{d_i} = \frac{1}{f}$$</div>
+    <canvas class="centre" id="canvas" height="500" width="800">
+     Your browser does not support the html5 canvas.
+   </canvas>
+   <div class="english">
+    <p> The focal length of the <span class="lens">lens</span> is \(f=\) <span id="focal-length"></span> units; since
+      it is <span id="f-sign"></span>, this is a <span id="converging"></span> <span class="lens">lens</span>.
+    </p><p>
+      The object distance \(d_o=\) <span id="d-object"></span> units;
+      since it is <span id="d-o-sign"></span> it is a <span id="o-real"></span> object.
+    </p><p>
+      The image distance \(d_i=\) <span id="d-image"></span> units;
+      since it is <span id="d-i-sign"></span> it is a <span id="i-real"></span> image.</p>
+      <p>The magnification is \(M=\) <span id="magnification"></span>. Since it is a
+       <span id="m-positive"></span> number, the orientation of the image is <span id="m-same"></span>
+       that of the object.
+       Since it is a number whose absolute value is  <span id="m-greater"></span> than 1,
+       the size of the image is <span id="m-greater2"></span> than that of the object.
+     </p>
+   </div>
+   <div class="french">
+    <p> La distance focale <span class="dela">de la</span> <span class="lentille">lentille</span> est \(f=\) <span id="longueur-focale"></span> unités; puisqu'elle
+      est <span id="f-signe"></span>, il s'agit d'<span class="une">une</span>
+      <span class="lentille">lentille</span> <span id="convergente"></span>.
+    </p><p>
+      La distance objet est \(d_o=\) <span id="d-objet"></span> unités; comme elle
+      est <span id="d-o-signe"></span> il s'agit d'un objet  <span id="o-reel"></span>.
+    </p><p>
+      La distance image est \(d_i=\) <span id="d-image-fr"></span> unités; comme elle
+      est <span id="d-i-signe"></span> il s'agit d'une image  <span id="i-reel"></span>.
+    </p>
+    <p>L'agrandissement latéral est \(M=\) <span id="agrandissement"></span>. Comme il
+      s'agit d'un nombre <span id="m-positif"></span>, l'orientation de l'image est
+      <span id="m-meme"></span> celle de l'objet.
+      Comme il s'agit d'un nombre dont la valeur absolue est plus <span id="m-grande"></span> que
+      1, la taille de l'image est plus <span id="m-grande2"></span> que celle de l'objet.
+    </p>
+  </div>
+  <br class="centre"/>
+</div> <!-- id text -->
+<br/>
+</div>  <!-- id content -->
 
-    <footer id="footer" class="clear"></footer>
+<footer id="footer" class="clear"></footer>
 </div> <!-- wrapper -->
 </body>
 <script type="text/javascript" charset="utf-8">
-$('#footer').load('footer.xml');
+  $('#footer').load('footer.xml');
 </script>
 </div>  <!-- class wrapper -->
 

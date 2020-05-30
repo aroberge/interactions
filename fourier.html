@@ -2,372 +2,372 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Séries de Fourier / Fourier series</title>
-    <link href="css/bilingual.css" rel="stylesheet" type="text/css">
-    <link href="css/tangle.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <title>Séries de Fourier / Fourier series</title>
+  <link href="css/bilingual.css" rel="stylesheet" type="text/css">
+  <link href="css/tangle.css" rel="stylesheet" type="text/css">
 
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="javascript/jquery.js"></script>
-    <script type="text/javascript" src="javascript/jquery.flot.js"></script>
-    <script type="text/javascript" src="javascript/tangle.js"></script>
+  <script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="javascript/jquery.js"></script>
+  <script type="text/javascript" src="javascript/jquery.flot.js"></script>
+  <script type="text/javascript" src="javascript/tangle.js"></script>
 
-    <script type="text/javascript" src="javascript/mootools.js"></script>
-    <script type="text/javascript" src="javascript/sprintf.js"></script>
-    <script type="text/javascript" src="javascript/BVTouchable.js"></script>
-    <script type="text/javascript" src="javascript/tanglekit.js"></script>
+  <script type="text/javascript" src="javascript/mootools.js"></script>
+  <script type="text/javascript" src="javascript/sprintf.js"></script>
+  <script type="text/javascript" src="javascript/BVTouchable.js"></script>
+  <script type="text/javascript" src="javascript/tanglekit.js"></script>
 
-    <style>
-        #saw-tooth-max-index {
-            color: #a33;
+  <style>
+    #saw-tooth-max-index {
+      color: #a33;
+    }
+
+    #square-max-index {
+      color: #a33;
+    }
+
+    #triangle-max-index {
+      color: #a33;
+    }
+
+    .tex-term1 {
+      color: #a33;
+    }
+
+    .tex-term2 {
+      color: #a33;
+    }
+
+    .tex-term3 {
+      color: #a33;
+    }
+
+    .tex-term4 {
+      color: #a33;
+    }
+
+    .tex-term5 {
+      color: #a33;
+    }
+  </style>
+
+  <!-- series -->
+  <script type="text/javascript">
+    var _globals = {
+      nb_terms: 5,
+      exact_data: [],
+      fourier_data: [],
+      marge: 0.4
+    };
+
+    _globals.compute_exact = function (fn_type) {
+      this.exact_data = [];
+      var tmp;
+      switch (fn_type) {
+        case "saw tooth":
+        case "en dents de scie":
+        this.exact_data.push([-Math.PI, -Math.PI / 2]);
+        this.exact_data.push([Math.PI, Math.PI / 2]);
+        this.exact_data.push([Math.PI, -Math.PI / 2]);
+        this.exact_data.push([3 * Math.PI, Math.PI / 2]);
+        break;
+        case "square wave":
+        case "onde carrée":
+        this.exact_data.push([-1, -Math.PI / 2]);
+        this.exact_data.push([0, -Math.PI / 2]);
+        this.exact_data.push([0, Math.PI / 2]);
+        this.exact_data.push([Math.PI, Math.PI / 2]);
+        this.exact_data.push([Math.PI, -Math.PI / 2]);
+        this.exact_data.push([2 * Math.PI, -Math.PI / 2]);
+        this.exact_data.push([2 * Math.PI, Math.PI / 2]);
+        this.exact_data.push([3 * Math.PI, Math.PI / 2]);
+        break;
+        case "triangle wave":
+        case "onde triangulaire":
+        tmp = Math.PI * Math.PI / 8;
+        this.exact_data.push([-Math.PI, -tmp]);
+        this.exact_data.push([0, tmp]);
+        this.exact_data.push([Math.PI, -tmp]);
+        this.exact_data.push([2 * Math.PI, tmp]);
+        this.exact_data.push([3 * Math.PI, -tmp]);
+        break;
+      }
+    }
+
+    _globals.compute_fourier = function (nb, fn_type) {
+      var _fourier, _odd, i, j;
+      this.fourier_data = [];
+      for (i = -this.marge; i < Math.PI * 2 + this.marge; i += 0.01) {
+        _odd = 1;
+        _fourier = 0;
+        switch (fn_type) {
+          case "saw tooth":
+          case "en dents de scie":
+          for (j = 1; j <= nb; j += 1) {
+            _fourier += Math.sin(j * i) / (_odd * j);
+            _odd = -_odd;
+          }
+          break;
+          case "square wave":
+          case "onde carrée":
+          for (j = 1; j <= nb; j += 1) {
+            _fourier += Math.sin((2 * j - 1) * i) / (2 * j - 1);
+          }
+          _fourier *= 2;
+          break;
+          case "triangle wave":
+          case "onde triangulaire":
+          for (j = 1; j <= nb; j += 1) {
+            _fourier += Math.cos((2 * j - 1) * i) / ((2 * j - 1) * (2 * j - 1));
+          }
+          break;
         }
+        this.fourier_data.push([i, _fourier]);
+      }
 
-        #square-max-index {
-            color: #a33;
-        }
+    }
 
-        #triangle-max-index {
-            color: #a33;
-        }
-
-        .tex-term1 {
-            color: #a33;
-        }
-
-        .tex-term2 {
-            color: #a33;
-        }
-
-        .tex-term3 {
-            color: #a33;
-        }
-
-        .tex-term4 {
-            color: #a33;
-        }
-
-        .tex-term5 {
-            color: #a33;
-        }
-    </style>
-
-    <!-- series -->
-    <script type="text/javascript">
-        var _globals = {
-            nb_terms: 5,
-            exact_data: [],
-            fourier_data: [],
-            marge: 0.4
-        };
-
-        _globals.compute_exact = function (fn_type) {
-            this.exact_data = [];
-            var tmp;
-            switch (fn_type) {
-                case "saw tooth":
-                case "en dents de scie":
-                    this.exact_data.push([-Math.PI, -Math.PI / 2]);
-                    this.exact_data.push([Math.PI, Math.PI / 2]);
-                    this.exact_data.push([Math.PI, -Math.PI / 2]);
-                    this.exact_data.push([3 * Math.PI, Math.PI / 2]);
-                    break;
-                case "square wave":
-                case "onde carrée":
-                    this.exact_data.push([-1, -Math.PI / 2]);
-                    this.exact_data.push([0, -Math.PI / 2]);
-                    this.exact_data.push([0, Math.PI / 2]);
-                    this.exact_data.push([Math.PI, Math.PI / 2]);
-                    this.exact_data.push([Math.PI, -Math.PI / 2]);
-                    this.exact_data.push([2 * Math.PI, -Math.PI / 2]);
-                    this.exact_data.push([2 * Math.PI, Math.PI / 2]);
-                    this.exact_data.push([3 * Math.PI, Math.PI / 2]);
-                    break;
-                case "triangle wave":
-                case "onde triangulaire":
-                    tmp = Math.PI * Math.PI / 8;
-                    this.exact_data.push([-Math.PI, -tmp]);
-                    this.exact_data.push([0, tmp]);
-                    this.exact_data.push([Math.PI, -tmp]);
-                    this.exact_data.push([2 * Math.PI, tmp]);
-                    this.exact_data.push([3 * Math.PI, -tmp]);
-                    break;
-            }
-        }
-
-        _globals.compute_fourier = function (nb, fn_type) {
-            var _fourier, _odd, i, j;
-            this.fourier_data = [];
-            for (i = -this.marge; i < Math.PI * 2 + this.marge; i += 0.01) {
-                _odd = 1;
-                _fourier = 0;
-                switch (fn_type) {
-                    case "saw tooth":
-                    case "en dents de scie":
-                        for (j = 1; j <= nb; j += 1) {
-                            _fourier += Math.sin(j * i) / (_odd * j);
-                            _odd = -_odd;
-                        }
-                        break;
-                    case "square wave":
-                    case "onde carrée":
-                        for (j = 1; j <= nb; j += 1) {
-                            _fourier += Math.sin((2 * j - 1) * i) / (2 * j - 1);
-                        }
-                        _fourier *= 2;
-                        break;
-                    case "triangle wave":
-                    case "onde triangulaire":
-                        for (j = 1; j <= nb; j += 1) {
-                            _fourier += Math.cos((2 * j - 1) * i) / ((2 * j - 1) * (2 * j - 1));
-                        }
-                        break;
-                }
-                this.fourier_data.push([i, _fourier]);
-            }
-
-        }
-
-        _globals.show_equation = function (nb, fn_type) {
-            switch (fn_type) {
+    _globals.show_equation = function (nb, fn_type) {
+      switch (fn_type) {
                 /*  While it would create less code repetition to hide() them all first
                     and only show() the relevant one in the case statement, doing so
                     can make the page jump "up".   */
-                case "saw tooth":
-                case "en dents de scie":
+                    case "saw tooth":
+                    case "en dents de scie":
                     $("#saw-tooth").show();
                     $("#square-wave").hide();
                     $("#triangle-wave").hide();
                     break;
-                case "square wave":
-                case "onde carrée":
+                    case "square wave":
+                    case "onde carrée":
                     $("#square-wave").show();
                     $("#saw-tooth").hide();
                     $("#triangle-wave").hide();
                     break;
-                case "triangle wave":
-                case "onde triangulaire":
+                    case "triangle wave":
+                    case "onde triangulaire":
                     $("#triangle-wave").show();
                     $("#saw-tooth").hide();
                     $("#square-wave").hide();
                     break;
-            }
-            $(".tex-term2").hide(); /* as some terms remain, this won't produce page jumps */
-            $(".tex-term3").hide();
-            $(".tex-term4").hide();
-            $(".tex-term5").hide();
-            if (nb > 5) {
-                nb = 5;
-            }
-            switch (nb) {
-                case 5:
+                  }
+                  $(".tex-term2").hide(); /* as some terms remain, this won't produce page jumps */
+                  $(".tex-term3").hide();
+                  $(".tex-term4").hide();
+                  $(".tex-term5").hide();
+                  if (nb > 5) {
+                    nb = 5;
+                  }
+                  switch (nb) {
+                    case 5:
                     $(".tex-term5").show();
-                case 4:
+                    case 4:
                     $(".tex-term4").show();
-                case 3:
+                    case 3:
                     $(".tex-term3").show();
-                case 2:
+                    case 2:
                     $(".tex-term2").show();
-                case 1:
+                    case 1:
                     break;
-            }
-        }
+                  }
+                }
 
-        _globals.update = function (nb, fn_type) {
-            this.compute_exact(fn_type);
-            this.compute_fourier(nb, fn_type);
-            this.show_equation(nb, fn_type);
-            this.plot.setData([this.exact_data, this.fourier_data]);
-            this.plot.draw();
-        }
+                _globals.update = function (nb, fn_type) {
+                  this.compute_exact(fn_type);
+                  this.compute_fourier(nb, fn_type);
+                  this.show_equation(nb, fn_type);
+                  this.plot.setData([this.exact_data, this.fourier_data]);
+                  this.plot.draw();
+                }
 
 
-        function setUpTangle() {
-            var element, tangle_en, tangle_fr;
+                function setUpTangle() {
+                  var element, tangle_en, tangle_fr;
 
-            element = document.getElementById("series_fr");
-            tangle_fr = new Tangle(element, {
-                initialize: function () {
-                    this.nb_terms = _globals.nb_terms;
-                    this.fn_type = "en dents de scie";
-                },
-                update: function () {
-                    $("#saw-tooth-max-index").html(this.nb_terms);
-                    $("#square-max-index").html(this.nb_terms);
-                    $("#triangle-max-index").html(this.nb_terms);
-                    if (tangle_en != undefined) {
+                  element = document.getElementById("series_fr");
+                  tangle_fr = new Tangle(element, {
+                    initialize: function () {
+                      this.nb_terms = _globals.nb_terms;
+                      this.fn_type = "en dents de scie";
+                    },
+                    update: function () {
+                      $("#saw-tooth-max-index").html(this.nb_terms);
+                      $("#square-max-index").html(this.nb_terms);
+                      $("#triangle-max-index").html(this.nb_terms);
+                      if (tangle_en != undefined) {
                         tangle_en.setValue("nb_terms", this.nb_terms);
                         switch (this.fn_type) {
-                            case "en dents de scie":
-                                tangle_en.setValue("fn_type", "saw tooth");
-                                break;
-                            case "onde carrée":
-                                tangle_en.setValue("fn_type", "square wave");
-                                break;
-                            case "onde triangulaire":
-                                tangle_en.setValue("fn_type", "triangle wave");
-                                break;
+                          case "en dents de scie":
+                          tangle_en.setValue("fn_type", "saw tooth");
+                          break;
+                          case "onde carrée":
+                          tangle_en.setValue("fn_type", "square wave");
+                          break;
+                          case "onde triangulaire":
+                          tangle_en.setValue("fn_type", "triangle wave");
+                          break;
                         }
+                      }
+                      _globals.update(this.nb_terms, this.fn_type);
                     }
-                    _globals.update(this.nb_terms, this.fn_type);
-                }
-            });
+                  });
 
-            element = document.getElementById("series_en");
-            tangle_en = new Tangle(element, {
-                initialize: function () {
-                    this.nb_terms = _globals.nb_terms;
-                    this.fn_type = "saw tooth";
-                },
-                update: function () {
-                    var info;
-                    $("#saw-tooth-max-index").html(this.nb_terms);
-                    $("#square-max-index").html(this.nb_terms);
-                    $("#triangle-max-index").html(this.nb_terms);
-                    tangle_fr.setValue("nb_terms", this.nb_terms);
-                    switch (this.fn_type) {
+                  element = document.getElementById("series_en");
+                  tangle_en = new Tangle(element, {
+                    initialize: function () {
+                      this.nb_terms = _globals.nb_terms;
+                      this.fn_type = "saw tooth";
+                    },
+                    update: function () {
+                      var info;
+                      $("#saw-tooth-max-index").html(this.nb_terms);
+                      $("#square-max-index").html(this.nb_terms);
+                      $("#triangle-max-index").html(this.nb_terms);
+                      tangle_fr.setValue("nb_terms", this.nb_terms);
+                      switch (this.fn_type) {
                         case "saw tooth":
-                            tangle_fr.setValue("fn_type", "en dents de scie");
-                            break;
+                        tangle_fr.setValue("fn_type", "en dents de scie");
+                        break;
                         case "square wave":
-                            tangle_fr.setValue("fn_type", "onde carrée");
-                            break;
+                        tangle_fr.setValue("fn_type", "onde carrée");
+                        break;
                         case "triangle wave":
-                            tangle_fr.setValue("fn_type", "onde triangulaire");
-                            break;
+                        tangle_fr.setValue("fn_type", "onde triangulaire");
+                        break;
+                      }
+                      _globals.update(this.nb_terms, this.fn_type);
                     }
-                    _globals.update(this.nb_terms, this.fn_type);
+                  });
+
                 }
-            });
+              </script>
 
-        }
-    </script>
+            </head>
 
-</head>
+            <body onload="setUpTangle();">
+              <div class="wrapper">
+                <header>
+                  <ul class="menu">
+                    <li id="logo"><a href="index.html">André Roberge</a></li>
+                    <li id="title"> Séries de Fourier - <span class="serif">Fourier series</span></li>
+                    <li> <a href="http://usainteanne.ca"><img class="sainte-anne" src="images/sainte-anne.png" /></a></li>
+                  </ul>
+                </header>
 
-<body onload="setUpTangle();">
-    <div class="wrapper">
-        <header>
-            <ul class="menu">
-                <li id="logo"><a href="index.html">André Roberge</a></li>
-                <li id="title"> Séries de Fourier - <span class="serif">Fourier series</span></li>
-                <li> <a href="http://usainteanne.ca"><img class="sainte-anne" src="images/sainte-anne.png" /></a></li>
-            </ul>
-        </header>
-
-        <div id="content" class="shadow">
-            <div class="text">
-                <div class="english">
-                    <h2>Fourier series</h2>
-                    <p>A Fourier series decomposes periodic functions into the sum of a (possibly infinite) set of
+                <div id="content" class="shadow">
+                  <div class="text">
+                    <div class="english">
+                      <h2>Fourier series</h2>
+                      <p>A Fourier series decomposes periodic functions into the sum of a (possibly infinite) set of
                         simple oscillating functions, namely sines and cosines.
-                        One can often obtain a good approximation using only a few terms.</p>
-                    <p id="series_en">For example, the graph below gives an approximation using the first
+                      One can often obtain a good approximation using only a few terms.</p>
+                      <p id="series_en">For example, the graph below gives an approximation using the first
                         <span data-var="nb_terms" class="TKAdjustableNumber" data-min="1" data-max="100"></span> terms
                         for a
                         <span class="ExpandingList" data-var="fn_type"
-                            data-items="saw tooth/square wave/triangle wave"></span> function.</p>
-                </div>
+                        data-items="saw tooth/square wave/triangle wave"></span> function.</p>
+                      </div>
 
-                <div class="french">
-                    <h2>Séries de Fourier</h2>
-                    <p>
-                        Les séries de Fourier permettent d'exprimer des fonctions périodiques
-                        par une somme (possiblement infinie) de fonctions sinus et cosinus
-                        ayant la même période.
-                        On peut souvent obtenir une bonne approximation en ne retenant que
+                      <div class="french">
+                        <h2>Séries de Fourier</h2>
+                        <p>
+                          Les séries de Fourier permettent d'exprimer des fonctions périodiques
+                          par une somme (possiblement infinie) de fonctions sinus et cosinus
+                          ayant la même période.
+                          On peut souvent obtenir une bonne approximation en ne retenant que
                         quelques termes.</p>
-                    <p id="series_fr">Par exemple, le graphique ci-dessous donne une approximation pour les
-                        <span data-var="nb_terms" class="TKAdjustableNumber" data-min="1" data-max="100"></span>
-                        premiers termes d'une fonction <span class="ExpandingList" data-var="fn_type"
-                            data-items="en dents de scie/onde carrée/onde triangulaire"></span>.</p>
-                </div>
-                <div class="centre" id="placeholder" style="width:600px;height:300px"></div>
+                        <p id="series_fr">Par exemple, le graphique ci-dessous donne une approximation pour les
+                          <span data-var="nb_terms" class="TKAdjustableNumber" data-min="1" data-max="100"></span>
+                          premiers termes d'une fonction <span class="ExpandingList" data-var="fn_type"
+                          data-items="en dents de scie/onde carrée/onde triangulaire"></span>.</p>
+                        </div>
+                        <div class="centre" id="placeholder" style="width:600px;height:300px"></div>
 
-                <div class="centre"><span id="saw-tooth">$$\sum_{n=1}^\cssId{saw-tooth-max-index}{5}
-                        \frac{(-1)^{n+1}}{n}\sin (nx) =
-                        \class{tex-term1}{\sin (x)} \class{tex-term2}{-\frac{1}{2} \sin (2x)}
-                        \class{tex-term3}{+\frac{1}{3} \sin (3x)}
-                        \class{tex-term4}{-\frac{1}{4} \sin (4x)}
-                        \class{tex-term5}{+\ldots}
+                        <div class="centre"><span id="saw-tooth">$$\sum_{n=1}^\cssId{saw-tooth-max-index}{5}
+                          \frac{(-1)^{n+1}}{n}\sin (nx) =
+                          \class{tex-term1}{\sin (x)} \class{tex-term2}{-\frac{1}{2} \sin (2x)}
+                          \class{tex-term3}{+\frac{1}{3} \sin (3x)}
+                          \class{tex-term4}{-\frac{1}{4} \sin (4x)}
+                          \class{tex-term5}{+\ldots}
                         $$</span><br /><span id="square-wave">$$\sum_{n=1}^\cssId{square-max-index}{5}
-                        \frac{2}{2n-1}\sin ((2n-1)x) =
-                        \class{tex-term1}{2\sin (x)} \class{tex-term2}{+\frac{2}{3} \sin (3x)}
-                        \class{tex-term3}{+\frac{2}{5} \sin (5x)}
-                        \class{tex-term4}{+\frac{2}{7} \sin (7x)}
-                        \class{tex-term5}{+\ldots}
+                          \frac{2}{2n-1}\sin ((2n-1)x) =
+                          \class{tex-term1}{2\sin (x)} \class{tex-term2}{+\frac{2}{3} \sin (3x)}
+                          \class{tex-term3}{+\frac{2}{5} \sin (5x)}
+                          \class{tex-term4}{+\frac{2}{7} \sin (7x)}
+                          \class{tex-term5}{+\ldots}
                         $$</span><br /><span id="triangle-wave">$$\sum_{n=1}^\cssId{triangle-max-index}{5}
-                        \frac{\cos((2n-1)x)}{(2n-1)^2} =
-                        \class{tex-term1}{\cos (x)} \class{tex-term2}{+\frac{\cos(3x)}{9}}
-                        \class{tex-term3}{+\frac{\cos(5x)}{25} }
-                        \class{tex-term4}{+\frac{\cos(7x)}{49}}
-                        \class{tex-term5}{+\ldots}
+                          \frac{\cos((2n-1)x)}{(2n-1)^2} =
+                          \class{tex-term1}{\cos (x)} \class{tex-term2}{+\frac{\cos(3x)}{9}}
+                          \class{tex-term3}{+\frac{\cos(5x)}{25} }
+                          \class{tex-term4}{+\frac{\cos(7x)}{49}}
+                          \class{tex-term5}{+\ldots}
                         $$</span></div>
 
 
 
-                <br class="centre" />
-            </div> <!-- class text -->
-        </div> <!-- id content -->
+                        <br class="centre" />
+                      </div> <!-- class text -->
+                    </div> <!-- id content -->
 
 
-        <script type="text/javascript">
-            $(function () {
+                    <script type="text/javascript">
+                      $(function () {
 
-                _globals.plot = $.plot($("#placeholder"), [{
-                        label: "exact",
-                        data: _globals.exact_data
-                    },
-                    {
-                        label: "Fourier",
-                        data: _globals.fourier_data
-                    }
-                ], {
-                    series: {
-                        lines: {
-                            show: true
+                        _globals.plot = $.plot($("#placeholder"), [{
+                          label: "exact",
+                          data: _globals.exact_data
                         },
-                        points: {
-                            show: false
+                        {
+                          label: "Fourier",
+                          data: _globals.fourier_data
                         }
-                    },
-                    colors: ["#4d4da7", "#cbcb4b"],
-                    xaxis: {
-                        ticks: [
+                        ], {
+                          series: {
+                            lines: {
+                              show: true
+                            },
+                            points: {
+                              show: false
+                            }
+                          },
+                          colors: ["#4d4da7", "#cbcb4b"],
+                          xaxis: {
+                            ticks: [
                             [0, "0"],
                             [Math.PI / 2, "\u03c0/2"],
                             [Math.PI, "\u03c0"],
                             [Math.PI * 3 / 2, "3\u03c0/2"],
                             [Math.PI * 2, "2\u03c0"]
-                        ],
-                        min: -0.2,
-                        max: 2 * Math.PI + 0.2
-                    },
-                    yaxis: {
-                        ticks: [
+                            ],
+                            min: -0.2,
+                            max: 2 * Math.PI + 0.2
+                          },
+                          yaxis: {
+                            ticks: [
                             [Math.PI, "-\u03c0"],
                             [-Math.PI / 2, "\u03c0/2"],
                             [0, "0"],
                             [Math.PI / 2, "\u03c0/2"],
                             [Math.PI, "\u03c0"]
-                        ],
-                        min: -2,
-                        max: 2
-                    },
-                    grid: {
-                        backgroundColor: {
-                            colors: ["#fff", "#f0f0f0"]
-                        }
-                    }
-                });
-            });
-        </script>
-        <footer id="footer" class="clear"></footer>
-    </div> <!-- wrapper -->
-</body>
-<script type="text/javascript" charset="utf-8">
-    $('#footer').load('footer.xml');
-</script>
-</body>
+                            ],
+                            min: -2,
+                            max: 2
+                          },
+                          grid: {
+                            backgroundColor: {
+                              colors: ["#fff", "#f0f0f0"]
+                            }
+                          }
+                        });
+                      });
+                    </script>
+                    <footer id="footer" class="clear"></footer>
+                  </div> <!-- wrapper -->
+                </body>
+                <script type="text/javascript" charset="utf-8">
+                  $('#footer').load('footer.xml');
+                </script>
+              </body>
 
-</html>
+              </html>
