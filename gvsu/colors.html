@@ -41,14 +41,16 @@ MathJax.Hub.Config({
         utilisés sont les suivants.</p>
         <p>Le modèle <a href="https://fr.wikipedia.org/wiki/Rouge_vert_bleu">
         rouge, vert, bleu</a> désigné parfois par l'acronyme français
-        RVB mais plus souvent par l'acronyme anglais RGB (pour <em>Red, Green, Blue</em>) que nous utilisons ici. Ce modèle est celui qui est
+        RVB mais plus souvent par <b>l'acronyme anglais RGB</b>
+        (pour <em>Red, Green, Blue</em>) <b>que nous utilisons ici.</b>
+        Ce modèle est celui qui est
         utilisé pour le contrôle des couleurs par les écrans d'appareils
       informatiques.</p>
-      <p>Le modèle <a href="https://fr.wikipedia.org/wiki/Teinte_saturation_luminosit%C3%A9">teinte, saturation, luminosité</a>,
-        plus connu par un de ses acronymes anglais tel que HSL
+      <p>Le modèle <a href="https://fr.wikipedia.org/wiki/Teinte_saturation_luminosit%C3%A9">teinte, saturation, luminosité</a> désigné par l'acronyme TSL,
+        est parfois désigné par un de ses acronymes anglais tel que HSL
         (<em>Hue, Saturation, Lightness)</em>,
         ou encore HSV (<em>V= Value</em>), ou encore HSB (<em>B=Brightness</em>).
-        La <b>teinte</b> (<em>hue</em>) correspond à notre perception de
+        La <b>teinte</b> correspond à notre perception de
         ce qu'est une couleur (par exemple: bleu), et les autres valeurs
         correspondent à l'intensité de la couleur ainsi que si elle est
       pâle ou foncée.</p>
@@ -59,7 +61,7 @@ MathJax.Hub.Config({
         du blanc ou du noir?), utile pour les anciens téléviseurs noirs et blancs,
         auquels on ajoutait deux autres valeurs correspondant à l'intensité de la couleur
         bleue et à celle de la couleur rouge.  En faisant un <em>changement de base</em>,
-      n peut transformer un vecteur du modèle YCbCr en un vecteur du modèle RGB.</p>
+      on peut transformer un vecteur du modèle YCbCr en un vecteur du modèle RGB.</p>
 
       <br>
       <hr>
@@ -85,16 +87,16 @@ MathJax.Hub.Config({
    <hr>
    <br>
 
-   <center><h3>Le modèle HSV</h3></center>
+   <center><h3>Le modèle TSL</h3></center>
    <p>
     Ci-dessous, vous pouvez changer individuellement chacune des trois
-    valeurs d'un vecteur HSV et de voir la couleur correspondante.
-    Les valeurs de la teinte (<em>hue</em>) varient entre 0 et 255,
+    valeurs d'un vecteur TSL et de voir la couleur correspondante.
+    Les valeurs de la teinte varient entre 0 et 255,
     alors que les autres valeurs varient entre 0 et 1.
   </p>
   <p>
    <center>
-    (H, S, V) = (<span id="span_hsv"></span>) <br>
+    (T, S, L) = (<span id="span_hsv"></span>) <br>
     <canvas id="hsv" width="350" height="70">
      Your browser does not support HTML5 Canvas.
    </canvas>
@@ -114,7 +116,7 @@ MathJax.Hub.Config({
   valeurs d'un vecteur YCbCr et de voir la couleur correspondante.
   Les valeurs de la luminance varient entre 0 et 255 alors que
   les autres valeurs varient entre -128 à 128, des valeurs négatives
-  indiquant que l'on "soustrait" du blanc un composante de cette couleur.
+  indiquant que l'on soustrait du blanc une composante de cette couleur.
 </p>
 <p>
  <center>

@@ -51,9 +51,9 @@ var hsvsliders = new Canvas("hsv", [0, 0, 1.5, 3]);
 hsvsliders.margins = [20, 5, 10, 5];
 hsvsliders.setUpCoordinates();
 
-var hl = new Label("H", [0, 2.5]);
+var hl = new Label("T", [0, 2.5]);
 var sl = new Label("S", [0, 1.5]);
-var vl = new Label("V", [0, 0.5]);
+var vl = new Label("L", [0, 0.5]);
 hl.offset = [-12, -5];
 sl.offset = [-12, -5];
 vl.offset = [-12, -5];
