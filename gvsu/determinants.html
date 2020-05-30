@@ -1,50 +1,95 @@
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
+
 <head>
-  <title>Determinants</title>
-  <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
+  <title>Déterminant</title>
+  <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
+
 </head>
 <script type="text/javascript" async
 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js"],
-  jax: ["input/TeX","output/HTML-CSS"],
-  tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
-  TeX: {
-  }
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [
+    ["$", "$"],
+    ["\\(", "\\)"]
+    ]
+  },
+  TeX: {}
 });
 </script>
-<body>
-  <center>
-    <table width=640>
-     <tr><td>
-       <center>
-         <h2> Determinants</h2>
-       </center>
 
-       <p>
-         The sliders in the diagram below allow you to choose a matrix \(A\).
-         The two vectors representing the columns of the matrix, along with the
-         parallelogram they define, are shown below.
+<body>
+
+  <div class="wrapper">
+    <header>
+      <ul class="menu">
+        <li id="logo"><a href="../index.html">André Roberge</a></li>
+        <li id="title">Déterminant</li>
+        <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
+      </ul>
+    </header>
+
+    <div id="content" class="shadow">
+      <div class="text">
+
+       <p>Pour une matrice de taille \(2\times 2\), le déterminant
+        est égal, à un signe près, à l'aire d'un parallélogramme dont
+        deux des côtés sont donnés par des vecteurs correspondant aux
+        colonnes de la matrice.
+        </p>
+        <p>
+        Pour la matrice
+        $${\mathbf A} = \begin{bmatrix}a & b\\c & d\end{bmatrix}$$
+        les deux vecteurs en question sont donc
+        $$\begin{pmatrix}a\\c\end{pmatrix} \qquad \mbox{et} \qquad
+          \begin{pmatrix}b\\d\end{pmatrix}
+        $$
+        Ci-dessous, vous pouvez ajuster les valeurs des composantes de
+        la matrice \(\mathbf A\) et voir le changement de la valeur
+        de son déterminant. À noter que, pour l'aire, nous avons choisi d'utiliser
+        le bleu pâle lorsque le déterminant est positif, et le rose lorsqu'il
+        est négatif.
        </p>
 
        <p>
-         <div style="text-align:center">
-           <canvas id="bottomsliders" width="450" height="100">
+         <center>
+           <canvas id="sliders" width="600" height="100">
              Your browser does not support HTML5 Canvas.
            </canvas>
-           <br>
-           <canvas id="bottomright" width="400" height="400" hspace=5>
+        </center>
+        </p>
+        <p>
+            Le déterminant de la matrice est: \(|{\mathbf A}|=\) <span id="det_a"></span>
+        </p>
+
+        <p>
+        <center>
+           <canvas id="graph" width="600" height="600">
              Your browser does not support HTML5 Canvas.
            </canvas>
            <script type='text/javascript' src="jslibrary/figures.js"></script>
            <script type='text/javascript' src="jslibrary/det.js"></script>
-         </div>
+         </center>
        </p>
+<br>
+<hr>
+<br>
 
-     </center>
-   </td></tr>
- </table>
-</center>
+<p>Ceci a été adapté de la
+  <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/determinants.html">version originale</a>
+  par
+  <a href="http://merganser.math.gvsu.edu/david/">David Austin</a>.
+</p>
+
+<br class="centre" />
+</div> <!-- text -->
+</div> <!-- content -->
+<footer id="footer" class="clear"></footer>
+</div> <!-- wrapper -->
 </body>
+
 </html>

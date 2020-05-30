@@ -1,16 +1,17 @@
-var bottommatrix = new Canvas("bottomsliders", [0, 0, 2, 2]);
-var bottomright = new Canvas("bottomright", [-4, -4, 4, 4]);
+var sliders = new Canvas("sliders", [0, 0, 2, 2]);
+var graph = new Canvas("graph", [-5, -5, 5, 5]);
+var det_a = document.getElementById("det_a");
 
-bottommatrix.margins = [20, 5, 20, 5];
-bottommatrix.setUpCoordinates();
-bottomright.margins = [5, 5, 5, 5]
-bottomright.setUpCoordinates();
+sliders.margins = [20, 5, 20, 5];
+sliders.setUpCoordinates();
+graph.margins = [5, 5, 5, 5]
+graph.setUpCoordinates();
 
 var dx = 0.05;
 var mkslider = function (xr, y, canvas, method, label) {
-    var s = new Slider(xr, y, [-2, 2], method);
-    s.ticks = [-2, 1, 2]
-    s.labels = [-2, 1, 2]
+    var s = new Slider(xr, y, [-3, 3], method);
+    s.ticks = [-3, 1, 3]
+    s.labels = [-3, 1, 3]
     s.point.style = "box";
     s.point.fillColor = "blue"
     s.point.size = 4;
@@ -23,7 +24,7 @@ var mkslider = function (xr, y, canvas, method, label) {
     return s;
 }
 
-var topupdate = function () {
+var sliders_update = function () {
     var ma = 1
     var mb = 0
     var mc = -1
@@ -38,12 +39,12 @@ var topupdate = function () {
     if (Math.abs(det) < 0.03) {
         trgrid.a2 = trgrid.a1;
     }
-    Av.head = [ma * x + mb * y, mc * x + md * y];
+    Av.head = [ma * x + mc * y, mb * x + md * y];
     topleft.draw();
     topright.draw()
 }
 
-var bottomupdate = function () {
+var graph_update = function () {
     var ma = ba.coordinate();
     var mb = bb.coordinate();
     var mc = bc.coordinate();
@@ -53,6 +54,13 @@ var bottomupdate = function () {
     var det = ma * md - mb * mc;
     if (det < 0) polygon.fillColor = "lightcoral";
     else polygon.fillColor = "skyblue";
+
+    if (Math.abs(det) < 0.03) {
+        det_a.innerHTML = 0;
+    } else {
+        det_a.innerHTML = Math.round(det * 100) / 100.;
+    }
+
     var a1 = [ma, mc];
     var a2 = [mb, md];
     tgrid.a1 = a1;
@@ -63,18 +71,20 @@ var bottomupdate = function () {
     polygon.points = [
         [0, 0], a1, vadd(a1, a2), a2
     ];
-    bottommatrix.draw();
-    bottomright.draw()
+    sliders.draw();
+    graph.draw()
 }
 
-var ba = mkslider([dx, 1 - 2 * dx], 1.5, bottommatrix, bottomupdate, "a");
-var bb = mkslider([1 + 2 * dx, 2 - dx], 1.5, bottommatrix, bottomupdate, "b");
-var bc = mkslider([dx, 1 - 2 * dx], 0.5, bottommatrix, bottomupdate, "c");
-var bd = mkslider([1 + 2 * dx, 2 - dx], 0.5, bottommatrix, bottomupdate, "d");
+var ba = mkslider([dx, 1 - 2 * dx], 1.5, sliders, graph_update, "a");
+var bb = mkslider([1 + 2 * dx, 2 - dx], 1.5, sliders, graph_update, "b");
+var bc = mkslider([dx, 1 - 2 * dx], 0.5, sliders, graph_update, "c");
+var bd = mkslider([1 + 2 * dx, 2 - dx], 0.5, sliders, graph_update, "d");
 ba.init(1);
 bb.init(0);
 bc.init(0);
 bd.init(1);
+bb.point.fillColor = "red";
+bd.point.fillColor = "red";
 
 var braxes = new Axes();
 braxes.labels = [
@@ -87,7 +97,7 @@ braxes.ticks = [
 ]
 
 var tgrid = new TGrid([1, 0], [0, 1]);
-bottomright.addPlotable(tgrid);
+graph.addPlotable(tgrid);
 
 var polygon = new Polygon([
     [0, 0],
@@ -97,14 +107,14 @@ var polygon = new Polygon([
 ]);
 polygon.fillColor = "skyblue";
 polygon.strokeColor = "gray";
-bottomright.addPlotable(polygon);
-bottomright.addPlotable(braxes);
+graph.addPlotable(polygon);
+graph.addPlotable(braxes);
 
 var v1 = new Vector(1, 0);
-v1.fillColor = "gray";
+v1.fillColor = "blue";
 var v2 = new Vector(0, 1);
-v2.fillColor = "gray";
-bottomright.addPlotable(v1);
-bottomright.addPlotable(v2);
+v2.fillColor = "red";
+graph.addPlotable(v1);
+graph.addPlotable(v2);
 
-bottomupdate();
+graph_update();
