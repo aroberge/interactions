@@ -340,7 +340,12 @@ function TGrid(a1, a2) {
 }
 TGrid.prototype = new Plotable();
 
-function Axes() {
+function Axes(draw_yorigin_tick) {
+    // by default, the tick and tick label at the origin are not drawn
+    // as they would interfere with the axes as they cross.
+    // However, in some cases (see Fourier example), the x-axis starts
+    // at zero, leaving enough room to draw the y=0 tick and label.
+    this.draw_yorigin_tick = draw_yorigin_tick;
 	this.ticks = null;
 	this.labels = null;
 	this.draw = function () {
@@ -381,7 +386,7 @@ function Axes() {
 	}
 	this.drawVTicks = function () {
 		for (var y = this.ticks[1][0]; y <= this.ticks[1][2]; y += this.ticks[1][1]) {
-			if (Math.abs(y) < 1e-10) continue;
+			if (Math.abs(y) < 1e-10 && !this.draw_yorigin_tick) continue;
 			this.ctx.save();
 			var p = this.transform.transformPoint([0, y]);
 			this.ctx.translate(p[0], p[1]);
@@ -401,7 +406,7 @@ function Axes() {
 	}
 	this.drawVLabels = function () {
 		for (var y = this.labels[1][0]; y <= this.labels[1][2]; y += this.labels[1][1]) {
-			if (Math.abs(y) < 1e-10) continue;
+			if (Math.abs(y) < 1e-10  && !this.draw_yorigin_tick) continue;
 			this.textAt(y, [0, y], [-ticksize - 2, this.fontsize / 2.0 - 2], "right");
 		}
 
