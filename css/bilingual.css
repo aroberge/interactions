@@ -59,7 +59,8 @@ ol,ul {
 .english {
     float: right;
     width: 440px;
-    font-family: serif;
+    font-style: oblique;
+    color: darkblue;
     font-size: 13pt;
 }
 
