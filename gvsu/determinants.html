@@ -5,6 +5,7 @@
 <head>
   <title>Déterminant</title>
   <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
+  <link href="../css/matrix.css" rel="stylesheet" type="text/css">
 
 </head>
 <script type="text/javascript" async
@@ -43,10 +44,11 @@ MathJax.Hub.Config({
         </p>
         <p>
         Pour la matrice
-        $${\mathbf A} = \begin{bmatrix}a & b\\c & d\end{bmatrix}$$
+        $${\mathbf A} = \begin{bmatrix}\color{blue}{a} & \color{red}{b}\\
+        \color{blue}{c} & \color{red}{d}\end{bmatrix}$$
         les deux vecteurs en question sont donc
-        $$\begin{pmatrix}a\\c\end{pmatrix} \qquad \mbox{et} \qquad
-          \begin{pmatrix}b\\d\end{pmatrix}
+        $$\begin{bmatrix}\color{blue}{a}\\ \color{blue}{c}\end{bmatrix} \qquad \mbox{et} \qquad
+          \begin{bmatrix}\color{red}{b}\\ \color{red}{d}\end{bmatrix}
         $$
         Ci-dessous, vous pouvez ajuster les valeurs des composantes de
         la matrice \(\mathbf A\) et voir le changement de la valeur
@@ -54,6 +56,38 @@ MathJax.Hub.Config({
         le bleu pâle lorsque le déterminant est positif, et le rose lorsqu'il
         est négatif.
        </p>
+
+    <center>
+        <table class="matrix">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner blue">a</td>
+                <td class="red">b</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner blue">c</td>
+                <td class="red">d</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+        =
+        <table class="matrix">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner blue" id="td_a">1</td>
+                <td class="red" id="td_b">0</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner blue" id="td_c">0</td>
+                <td class="red" id="td_d">1</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+    </center>
 
        <p>
          <center>
