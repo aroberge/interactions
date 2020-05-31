@@ -2,12 +2,27 @@ var bottommatrix = new Canvas("bottomsliders", [0, 0, 2, 2]);
 var bottomleft = new Canvas("bottomleft", [-4, -4, 4, 4]);
 var bottomright = new Canvas("bottomright", [-4, -4, 4, 4]);
 
+var td_a = document.getElementById("td_a");
+var td_b = document.getElementById("td_b");
+var td_c = document.getElementById("td_c");
+var td_d = document.getElementById("td_d");
+
 bottommatrix.margins = [20, 5, 20, 5];
 bottommatrix.setUpCoordinates();
 bottomleft.margins = [5, 5, 5, 5];
 bottomleft.setUpCoordinates();
 bottomright.margins = [5, 5, 5, 5]
 bottomright.setUpCoordinates();
+
+function force_int(val) {
+    // this helps to reduce frustrations in trying to set up exact
+    // integer values using the sliders
+    if (Math.abs(Math.round(val) - val) < 0.015) {
+        return Math.round(val);
+    }
+    return val;
+}
+
 
 var dx = 0.05;
 var mkslider = function (xr, y, canvas, method, label) {
@@ -51,6 +66,11 @@ var bottomupdate = function () {
     var mb = bb.coordinate();
     var mc = bc.coordinate();
     var md = bd.coordinate();
+    ma = force_int(ma);
+    mb = force_int(mb);
+    mc = force_int(mc);
+    md = force_int(md);
+
     v1.head = [ma, mc];
     v2.head = [mb, md];
     var det = ma * md - mb * mc;
@@ -71,6 +91,10 @@ var bottomupdate = function () {
 
     bottomleft.draw();
     bottomright.draw()
+    td_a.innerHTML = Math.round(ma * 100) / 100.;
+    td_b.innerHTML = Math.round(mb * 100) / 100.;
+    td_c.innerHTML = Math.round(mc * 100) / 100.;
+    td_d.innerHTML = Math.round(md * 100) / 100.;
 }
 
 var ba = mkslider([dx, 1 - 2 * dx], 1.5, bottommatrix, bottomupdate, "a");

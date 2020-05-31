@@ -3,8 +3,9 @@
 <meta charset="utf-8">
 
 <head>
-  <title>Transformations linéaires 1</title>
+  <title>Transformation linéaire</title>
   <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
+  <link href="../css/matrix.css" rel="stylesheet" type="text/css">
 
 </head>
 <script type="text/javascript" async
@@ -28,7 +29,7 @@ MathJax.Hub.Config({
     <header>
       <ul class="menu">
         <li id="logo"><a href="../index.html">André Roberge</a></li>
-        <li id="title">Transformations linéaires 1</li>
+        <li id="title">Transformation linéaire</li>
         <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
       </ul>
     </header>
@@ -42,16 +43,48 @@ MathJax.Hub.Config({
         sur le plan, ou sur un simple vecteur.
       </p>
       <p>Initialement, la matrice \({\mathbf A}\) est la matrice identité.
-       Vous pouvez modifier les coefficents individuels de cette matrice
-     et voir les changement correspondants dans le plan.</p>
-     <p>Vous pouvez également changer la position du vecteur de couleur
-      rouge dans l'image à gauche pour voir sa valeur transformée
-      dans l'image à droite.
+        Vous pouvez modifier les coefficents individuels de cette matrice
+        et voir les changement correspondants dans le plan. Également,
+        en utilisant le "cliquer-glisser" sur la tête du vecteur rouge,
+        vous pouvez changer sa position et voir sa valeur transformée
+        dans l'image à droite.
     </p>
+
+    <center>
+        <table class="matrix">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner">a</td>
+                <td>b</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner">c</td>
+                <td>d</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+        =
+        <table class="matrix">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner" id="td_a">1</td>
+                <td id="td_b">0</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner" id="td_c">0</td>
+                <td id="td_d">1</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+    </center>
 
     <p>
      <center>
-       <canvas id="bottomsliders" width="550" height="120">
+       <canvas id="bottomsliders" width="600" height="120">
          Your browser does not support HTML5 Canvas.
        </canvas>
        <br>
