@@ -1,0 +1,48 @@
+/* Recreating the look of a LaTeX bmatrix */
+table.matrix {
+    border-spacing: 0px;
+    display: inline;
+    vertical-align: middle;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+td {
+    padding-right: 0.2em;
+    padding-right: 0.2em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
+td.b-left {border-left:1px solid black;}
+
+td.b-right {border-right: 1px solid black;}
+
+td.top-left {
+    border-left:1px solid black;
+    border-top: 1px solid black;
+}
+
+td.top-right {
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}
+
+td.bottom-left {
+    border-left:1px solid black;
+    border-bottom: 1px solid black;
+}
+
+td.bottom-right {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+td.inner {
+    padding-right: 1em;
+    padding-left: 0.4em;
+}
+
+td.red {color: red;}
+
+td.blue {color: blue;}
