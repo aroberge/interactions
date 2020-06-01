@@ -41,8 +41,16 @@ MathJax.Hub.Config({
         transformation produite par une matrice
         $${\mathbf A} = \begin{bmatrix}a & b\\c & d\end{bmatrix}$$
         sur le plan, ou sur un simple vecteur.
+        $${\mathbf A}{\mathbf x} = \begin{bmatrix}a & b\\c & d\end{bmatrix}
+        \begin{bmatrix}x \\ y\end{bmatrix}
+        = \begin{bmatrix}ax + by \\ cx + dy\end{bmatrix}
+        = \begin{bmatrix}x' \\ y'\end{bmatrix} = {\mathbf x'}
+        $$
       </p>
-      <p>Initialement, la matrice \({\mathbf A}\) est la matrice identité.
+      <p>Cette transformation est donc une transformation
+        \({\mathbf A}: {\mathbb R}^2 \rightarrow {\mathbb R}^2\).
+      </p>
+      <p>Initialement, la matrice \({\mathbf A}\) ci-dessous est la matrice identité.
         Vous pouvez modifier les coefficents individuels de cette matrice
         et voir les changement correspondants dans le plan. Également,
         en utilisant le "cliquer-glisser" sur la tête du vecteur rouge,
@@ -102,7 +110,6 @@ MathJax.Hub.Config({
       <br>
       <hr>
       <br>
-
 
       <p>Ceci a été adapté de la
         <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/matrixmult.html">version originale</a>

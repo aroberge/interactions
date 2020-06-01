@@ -1,5 +1,22 @@
 var dx = 4;
 
+var td_a = document.getElementById("td_a");
+var td_b = document.getElementById("td_b");
+var td_c = document.getElementById("td_c");
+var td_d = document.getElementById("td_d");
+var td_e = document.getElementById("td_e");
+var td_f = document.getElementById("td_f");
+
+function force_int(val) {
+    // this helps to reduce frustrations in trying to set up exact
+    // integer values using the sliders
+    if (Math.abs(Math.round(val) - val) < 0.015) {
+        return Math.round(val);
+    }
+    return val;
+}
+
+
 var reset = document.getElementById("reset");
 reset.onclick = function () {
 	left.resetBaseTransform();
@@ -32,12 +49,20 @@ var getCurrentTransform = function () {
 		[0, 1, 0],
 		[0, 0, 1]
 	];
-	matrix[0][0] = sliders[0].coordinate();
-	matrix[0][1] = sliders[1].coordinate();
-	matrix[0][2] = sliders[2].coordinate();
-	matrix[1][0] = sliders[3].coordinate();
-	matrix[1][1] = sliders[4].coordinate();
-	matrix[1][2] = sliders[5].coordinate();
+	matrix[0][0] = force_int(sliders[0].coordinate());
+	matrix[0][1] = force_int(sliders[1].coordinate());
+	matrix[0][2] = force_int(sliders[2].coordinate());
+	matrix[1][0] = force_int(sliders[3].coordinate());
+	matrix[1][1] = force_int(sliders[4].coordinate());
+	matrix[1][2] = force_int(sliders[5].coordinate());
+
+    td_a.innerHTML = Math.round(matrix[0][0] * 100) / 100.;
+    td_b.innerHTML = Math.round(matrix[0][1] * 100) / 100.;
+    td_e.innerHTML = Math.round(matrix[0][2] * 100) / 100.;
+    td_c.innerHTML = Math.round(matrix[1][0] * 100) / 100.;
+    td_d.innerHTML = Math.round(matrix[1][1] * 100) / 100.;
+    td_f.innerHTML = Math.round(matrix[1][2] * 100) / 100.;
+
 	var af = new AffineTransformation();
 	af.matrix = matrix;
 	return af;
@@ -50,9 +75,10 @@ var update = function () {
 	right.woody.draw();
 }
 
-function ASlider(id, xpos) {
+function ASlider(id, xpos, color) {
 	this.slider = document.getElementById(id);
 	this.slider.id = id;
+    this.slider.color = color;
 	this.slider.ctx = this.slider.getContext("2d");
 	this.slider.margin = 5;
 	this.deltaX = (this.slider.width - 2 * this.slider.margin) / 4.0;
@@ -141,7 +167,7 @@ function ASlider(id, xpos) {
 		var y = this.locationY - dx;
 
 		this.ctx.save();
-		this.ctx.fillStyle = "red"
+		this.ctx.fillStyle = this.color;
 		this.ctx.fillRect(x, y, 2 * dx, 2 * dx);
 		this.ctx.strokeRect(x, y, 2 * dx, 2 * dx);
 		this.ctx.restore();
@@ -247,8 +273,10 @@ function AffineTransformation() {
 
 }
 
-function Woody(id) {
+function Woody(id, color) {
 	this.woody = document.getElementById(id);
+    this.color = color;
+    this.woody.parent = this;
 	this.woody.ctx = this.woody.getContext("2d");
 	var halfSize = this.woody.width / 2.0
 	this.woody.transform = new AffineTransformation();
@@ -311,7 +339,7 @@ function Woody(id) {
 		this.transform.compose(drawTransformClone);
 		this.ctx.save();
 		this.ctx.lineWidth = 2;
-		this.ctx.strokeStyle = "blue"
+		this.ctx.strokeStyle = this.parent.color;
 
 		this.transform.translate(0, 2);
 		this.transform.scale(0.5, 0.5);
@@ -350,14 +378,18 @@ function Woody(id) {
 	}
 }
 
-sliders = [new ASlider("a", 1), new ASlider("b", 0), new ASlider("c", 0),
-	new ASlider("d", 0), new ASlider("e", 1), new ASlider("f", 0)
+sliders = [new ASlider("a", 1, "blue"),
+           new ASlider("b", 0, "blue"),
+           new ASlider("e", 0, "red"),
+	       new ASlider("c", 0, "blue"),
+           new ASlider("d", 1, "blue"),
+           new ASlider("f", 0, "red")
 ];
 for (var i = 0; i < sliders.length; i++) {
 	sliders[i].slider.draw();
 }
 
-var left = new Woody("left");
-var right = new Woody("right");
+var left = new Woody("left", "blue");
+var right = new Woody("right", "black");
 left.woody.draw();
 right.woody.draw();

@@ -1,65 +1,169 @@
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
+
 <head>
-  <title>Computer animation</title>
-  <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
+  <title>Translation et coordonnées homogènes</title>
+  <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
+  <link href="../css/matrix.css" rel="stylesheet" type="text/css">
+
 </head>
 <script type="text/javascript" async
 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js"],
-  jax: ["input/TeX","output/HTML-CSS"],
-  tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
-  TeX: {
-  }
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [
+    ["$", "$"],
+    ["\\(", "\\)"]
+    ]
+  },
+  TeX: {}
 });
 </script>
+
 <body>
-  <center>
-    <table width=640>
-     <tr><td>
-       <center>
-         <h2> Computer animation</h2>
+
+  <div class="wrapper">
+    <header>
+      <ul class="menu">
+        <li id="logo"><a href="../index.html">André Roberge</a></li>
+        <li id="title">Translation et coordonnées homogènes</li>
+        <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
+      </ul>
+    </header>
+
+    <div id="content" class="shadow">
+      <div class="text">
+       <p>
+        Dans une autre démonstration, vous avez pu explorer les transformations
+        linéaires du plan:
+        $${\mathbf A}{\mathbf x} = \begin{bmatrix}\color{blue}a & \color{blue}b\\\color{blue}c & \color{blue}d\end{bmatrix}
+        \begin{bmatrix}x \\ y\end{bmatrix}
+        = \begin{bmatrix}\color{blue}ax + \color{blue}by \\ \color{blue}cx + \color{blue}dy\end{bmatrix}
+        = \begin{bmatrix}x' \\ y'\end{bmatrix} = {\mathbf x'}
+        $$
+        Une des limitations de ce type de transformation est qu'on ne peut
+        pas générer des translations. Par exemple, ci-dessous, l'image
+        de droite correspond à la translation
+        $$ \begin{bmatrix}x \\ y\end{bmatrix}
+        \qquad\color{blue}{\Rightarrow} \qquad
+        \begin{bmatrix}x+2 \\ y+1\end{bmatrix}$$.
+
+
+       <center><img src="animate-char.svg"  style="vertical-align: middle;">
+        $\qquad\color{blue}{\Rightarrow} \qquad$
+        <img src="animate-translate.svg" style="vertical-align: middle;">
        </center>
+       Une façon de permettre ceci est d'utiliser ce qu'on appelle
+       des coordonnées homogènes, où on ajoute artificiellement une
+       dimension supplémentaire. Pour les transformations du plan
+       ceci correspond à transformer des vecteurs de \({\mathbb R}^3\)
+       au lieu de \({\mathbb R}^3\).
+        $${\mathbf A}{\mathbf x} = \begin{bmatrix}\color{blue}a & \color{blue}b &\color{red}{e}
+        \\ \color{blue}c & \color{blue}d & \color{red}{f}\\
+        0 & 0 & 1 \end{bmatrix}
+        \begin{bmatrix}x \\ y \\ 1\end{bmatrix}
+        = \begin{bmatrix}\color{blue}ax + \color{blue}by + \color{red}{e} \\
+         \color{blue}cx + \color{blue}dy + \color{red}{f}\
+        \\ 1\end{bmatrix}
+        = \begin{bmatrix}x' \\ y'  \\ 1\end{bmatrix} = {\mathbf x'}
+        $$
+        Graphiquement, cet ajout d'une coordonnée supplémentaire peut être
+        représenté de la façon suivante:
+
+       <center><img src="animate-homogeneous.svg"></center>
+              </p>
 
        <p>
-         The diagram below allows you to create matrix
-         transformations that move the character into various poses.
-       </p>
+        Vous pouvez visualiser les différents types de transformations
+        possibles en choisissant différents paramètres ci-dessous.
 
-       <p>
-         <div style="text-align:center">
+         <center>
 
-           <table cellpadding = 5 align=center>
+    <center>
+        <table class="matrix">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner blue">a</td>
+                <td class="inner blue">b</td>
+                <td class="red">e</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="b-left"></td>
+                <td class="inner blue">c</td>
+                <td class="inner blue">d</td>
+                <td class="red">f</td>
+                <td class="b-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner">0</td>
+                <td class="inner">0</td>
+                <td>1</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+        =
+        <table class="matrix">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner blue" id="td_a">1</td>
+                <td class="inner blue" id="td_b">0</td>
+                <td class="red" id="td_e">0</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="b-left"></td>
+                <td class="inner blue" id="td_c">0</td>
+                <td class="inner blue" id="td_d">1</td>
+                <td class="red" id="td_f">0</td>
+                <td class="b-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner">0</td>
+                <td class="inner">0</td>
+                <td>1</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+    </center>
+
+
+
+           <table cellpadding = 20 align=center>
              <tr> <td>
-              <canvas id="a" width="150" height="45">
+              <canvas id="a" width="200" height="45">
                 Your browser does not support HTML5 Canvas.
               </canvas>
             </td>
             <td>
-              <canvas id="b" width="150" height="45">
+              <canvas id="b" width="200" height="45">
                 Your browser does not support HTML5 Canvas.
               </canvas>
             </td>
             <td>
-              <canvas id="c" width="150" height="45">
+              <canvas id="e" width="200" height="45">
                 Your browser does not support HTML5 Canvas.
               </canvas>
             </td>
           </tr>
 
           <tr> <td>
-            <canvas id="d" width="150" height="45">
+            <canvas id="c" width="200" height="45">
               Your browser does not support HTML5 Canvas.
             </canvas>
           </td>
           <td>
-            <canvas id="e" width="150" height="45">
+            <canvas id="d" width="200" height="45">
               Your browser does not support HTML5 Canvas.
             </canvas>
           </td>
           <td>
-            <canvas id="f" width="150" height="45">
+            <canvas id="f" width="200" height="45">
               Your browser does not support HTML5 Canvas.
             </canvas>
           </td>
@@ -68,26 +172,38 @@ MathJax.Hub.Config({
 
       <table cellpadding = 10 align = center>
        <tr> <td>
-        <canvas id="left" width="250" height="250" hspace="10">
+        <canvas id="left" width="350" height="350" hspace="10">
           Your browser does not support HTML5 Canvas.
         </canvas>
       </td>
       <td>
-        <canvas id="right" width="250" height="250" hspace="10">
+        <canvas id="right" width="250" height="250" hspace="10" halign="center">
           Your browser does not support HTML5 Canvas.
-        </canvas>
+        </canvas><br>
+        Aperçu de la transformation.
       </td>
     </tr>
   </table>
-  <button type="button" id="compose"> Compose </button>
-  <button type="button" id="reset"> Reset </button>
+  <button type="button" id="compose"> Appliquer la transformation</button>
+  <button type="button" id="reset"> Recommencer du début </button>
+
+</center>
   <script type='text/javascript' src='jslibrary/animate.js'></script>
 
-</div>
-</p>
-</center>
-</td></tr>
-</table>
-</center>
+      <br>
+      <hr>
+      <br>
+
+      <p>Ceci a été adapté de la
+        <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/animate.html">version originale</a>
+        par
+        <a href="http://merganser.math.gvsu.edu/david/">David Austin</a>.
+      </p>
+
+      <br class="centre" />
+    </div> <!-- text -->
+  </div> <!-- content -->
+  <footer id="footer" class="clear"></footer>
+</div> <!-- wrapper -->
 </body>
 </html>
