@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
+
 <head>
-  <title>Eigenvectors</title>
-  <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
+  <title>Vecteurs propres</title>
+  <link href="../css/bilingual.css" rel="stylesheet" type="text/css">
+  <link href="../css/matrix.css" rel="stylesheet" type="text/css">
+
 </head>
 <script type="text/javascript" async
 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js"],
-  jax: ["input/TeX","output/HTML-CSS"],
-  tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
-  TeX: {
-  }
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [
+    ["$", "$"],
+    ["\\(", "\\)"]
+    ]
+  },
+  TeX: {}
 });
 </script>
-<body>
-  <center>
-    <table width=640>
-     <tr><td>
-       <center>
-         <h2> Eigenvectors </h2>
-       </center>
 
+<body>
+
+  <div class="wrapper">
+    <header>
+      <ul class="menu">
+        <li id="logo"><a href="../index.html">André Roberge</a></li>
+        <li id="title">Vecteurs propres</li>
+        <li> <a href="https://usainteanne.ca"><img class="sainte-anne" src="../images/sainte-anne.png" /></a></li>
+      </ul>
+    </header>
+
+    <div id="content" class="shadow">
+      <div class="text">
 
        <p>
          The sliders in the diagram below allow you to choose a matrix \(A\).
@@ -47,11 +61,26 @@ MathJax.Hub.Config({
        </p>
 
 
+      <br>
+      <hr>
+      <br>
 
+      <p>Ceci a été adapté de la
+        <a href="http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/animate.html">version originale</a>
+        par
+        <a href="http://merganser.math.gvsu.edu/david/">David Austin</a>.
+      </p>
 
-     </center>
-   </td></tr>
- </table>
-</center>
+      <br class="centre" />
+    </div> <!-- text -->
+  </div> <!-- content -->
+      <footer id="footer" class="clear">
+        <p>
+        <a class="email" href="mailto:andre.roberge@usainteanne.ca">
+        <img src='../images/mailto.png' height="40px" width="40px"/></a>
+        <a href="http://about.me/andre.roberge">André Roberge ?</a>
+        </p>
+      </footer>
+</div> <!-- wrapper -->
 </body>
 </html>
