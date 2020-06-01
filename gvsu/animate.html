@@ -50,17 +50,19 @@ MathJax.Hub.Config({
         $$ \begin{bmatrix}x \\ y\end{bmatrix}
         \qquad\color{blue}{\Rightarrow} \qquad
         \begin{bmatrix}x+2 \\ y+1\end{bmatrix}$$.
+    </p>
 
 
        <center><img src="animate-char.svg"  style="vertical-align: middle;">
         $\qquad\color{blue}{\Rightarrow} \qquad$
         <img src="animate-translate.svg" style="vertical-align: middle;">
        </center>
-       Une façon de permettre ceci est d'utiliser ce qu'on appelle
+       <p>
+       Une façon de permettre de les translations est d'utiliser ce qu'on appelle
        des coordonnées homogènes, où on ajoute artificiellement une
        dimension supplémentaire. Pour les transformations du plan
        ceci correspond à transformer des vecteurs de \({\mathbb R}^3\)
-       au lieu de \({\mathbb R}^3\).
+       au lieu de \({\mathbb R}^2\).
         $${\mathbf A}{\mathbf x} = \begin{bmatrix}\color{blue}a & \color{blue}b &\color{red}{e}
         \\ \color{blue}c & \color{blue}d & \color{red}{f}\\
         0 & 0 & 1 \end{bmatrix}
@@ -70,6 +72,11 @@ MathJax.Hub.Config({
         \\ 1\end{bmatrix}
         = \begin{bmatrix}x' \\ y'  \\ 1\end{bmatrix} = {\mathbf x'}
         $$
+        Ainsi, la translation illustrée précédemment correspond à la matrice
+        $$
+        \begin{bmatrix} 1 & 0 & 2 \\ 0 & 1 & 1 \\ 0 & 0 & 1
+        \end{bmatrix}
+        $$
         Graphiquement, cet ajout d'une coordonnée supplémentaire peut être
         représenté de la façon suivante:
 
@@ -77,10 +84,8 @@ MathJax.Hub.Config({
               </p>
 
        <p>
-        Vous pouvez visualiser les différents types de transformations
+        Au bas de la page, vous pouvez visualiser les différents types de transformations
         possibles en choisissant différents paramètres ci-dessous.
-
-         <center>
 
     <center>
         <table class="matrix">
@@ -130,7 +135,6 @@ MathJax.Hub.Config({
                 <td class="bottom-right"></td>
             </tr>
         </table>
-    </center>
 
 
 
@@ -177,7 +181,7 @@ MathJax.Hub.Config({
         </canvas>
       </td>
       <td>
-        <canvas id="right" width="250" height="250" hspace="10" halign="center">
+        <canvas id="right" width="250" height="250" hspace="10">
           Your browser does not support HTML5 Canvas.
         </canvas><br>
         Aperçu de la transformation.
