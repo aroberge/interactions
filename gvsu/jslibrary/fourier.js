@@ -1,4 +1,4 @@
-var w0 = 5;
+var w0 = 1;
 var w1 = 1;
 var w2 = 0;
 var w3 = 0;
