@@ -37,22 +37,117 @@ MathJax.Hub.Config({
     <div id="content" class="shadow">
       <div class="text">
 
-       <p>
-         The sliders in the diagram below allow you to choose a matrix \(A\).
-         The vector \({\mathbf v}\) is shown in red and may be varied
-         by clicking
-         in the head of the vector.  The vector \(A{\mathbf v}\) is
-         then shown in
-         gray.
-       </p>
+       <p>Le vecteur \(\mathbf v\) est un <b>vecteur propre</b> de la
+        matrice \(\mathbf A\) s'il obéit la relation suivante:
+        $${\mathbf A}{\mathbf v} = \lambda {\mathbf v}$$
+        où \(\lambda\) est une constante appelée la <b>valeur propre.</b>
+        Soit un vecteur \(\mathbf v\) quelconque.
+        Si on écrit \({\mathbf A}{\mathbf v} = {\mathbf u}\) et qu'on fait
+        un graphique avec \(\mathbf v\) et \(\mathbf u\), on verra que
+        ces deux vecteurs sont colinéaires si \(\mathbf v\) est un
+        vecteur propre de \(\mathbf A\).
+      </p>
+      <p>La démonstration interactive ci-dessous vous permet d'explorer ces concepts.
+      </p>
+      <p>Initialement, la matrice \({\mathbf A}\) ci-dessous est la matrice identité.
+        Vous pouvez modifier les coefficents individuels de cette matrice
+        et voir les changement correspondants dans le plan. Également,
+        en utilisant le "cliquer-glisser" sur la tête du vecteur rouge \(\mathbf v\),
+        vous pouvez changer sa position et voir le vecteur \(\mathbf u\) correspondant,
+        indiqué en gris.
+        <b>N.B. Les valeurs indiquées ne sont pas exactes: elles sont arrondies au dixième près.</b>
+    </p>
+
+    <center>\({\mathbf A}{\mathbf v} = {\mathbf u}\)
+        <span style="font-size:120%; color: blue"> ⟹</span>
+        <table class="matrix">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner">a</td>
+                <td>b</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner">c</td>
+                <td>d</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+        <table class="matrix" style="margin-left: -30px; margin-right: -15px;">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner">x</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner">y</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+        =
+        <table class="matrix" style="margin-left: -15px;">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner">x'</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner">y'</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+        <span style="font-size: 200%; color: blue">⟹</span>
+        <table class="matrix">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner" id="td_a">1</td>
+                <td id="td_b">0</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner" id="td_c">0</td>
+                <td id="td_d">1</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+        <table class="matrix" style="margin-left: -30px; margin-right: -15px;">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner" id="td_x">1</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner" id="td_y">0</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+        =
+        <table class="matrix" style="margin-left: -15px;">
+            <tr>
+                <td class="top-left"></td>
+                <td class="inner" id="td_xprime">1</td>
+                <td class="top-right"></td>
+            </tr>
+            <tr>
+                <td class="bottom-left"></td>
+                <td class="inner" id="td_yprime">0</td>
+                <td class="bottom-right"></td>
+            </tr>
+        </table>
+    </center>
 
        <p>
          <div style="text-align:center">
-           <canvas id="sliders" width="350" height="100">
+           <canvas id="sliders" width="600" height="200">
              Your browser does not support HTML5 Canvas.
            </canvas>
            <br>
-           <canvas id="eigenvector" width="350" height="350" hspace=5>
+           <canvas id="eigenvector" width="600" height="600" hspace=5>
              Your browser does not support HTML5 Canvas.
            </canvas>
            <script type='text/javascript' src="jslibrary/figures.js"></script>
