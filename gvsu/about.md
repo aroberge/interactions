@@ -7,3 +7,5 @@ the textbook)
 but can be navigated to from
 http://merganser.math.gvsu.edu/david/linear.algebra/ula/interactivefigs/
 
+They are licensed under https://creativecommons.org/licenses/by/4.0/
+
