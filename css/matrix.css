@@ -42,6 +42,10 @@ td.inner {
     padding-right: 1em;
     padding-left: 0.4em;
 }
+td.single {
+    padding-right: 0.4em;
+    padding-left: 0.4em;
+}
 
 td.red {color: red;}
 
