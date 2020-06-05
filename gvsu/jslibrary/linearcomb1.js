@@ -1,8 +1,8 @@
 var topmatrix = new Canvas("topsliders", [0, 0, 2, 2]);
-var topcanvas = new Canvas("topcanvas", [-4, -4, 4, 4]);
+var topcanvas = new Canvas("topcanvas", [-10, -10, 10, 10]);
 
 var bottommatrix = new Canvas("bottomsliders", [0, 0, 2, 2]);
-var bottomcanvas = new Canvas("bottomcanvas", [-4, -4, 4, 4]);
+var bottomcanvas = new Canvas("bottomcanvas", [-10, -10, 10, 10]);
 
 topmatrix.margins = [20, 5, 20, 5];
 topmatrix.setUpCoordinates();
@@ -16,9 +16,9 @@ bottomcanvas.setUpCoordinates();
 
 var dx = 0.1;
 var mkslider = function (xr, y, canvas, method) {
-    var s = new Slider(xr, y, [-2, 2], method);
-    s.ticks = [-2, 1, 2]
-    s.labels = [-2, 1, 2]
+    var s = new Slider(xr, y, [-5, 5], method);
+    s.ticks = [-5, 1, 5]
+    s.labels = [-5, 1, 5]
     s.point.style = "box";
     s.point.fillColor = "blue"
     s.point.size = 4;
@@ -46,7 +46,7 @@ var bottomupdate = function () {
 var ta = mkslider([dx, 2 - dx], 1.5, topmatrix, topupdate);
 var tb = mkslider([dx, 2 - dx], 0.5, topmatrix, topupdate);
 ta.init(1);
-tb.init(0);
+tb.init(1);
 
 var lta = new Label("a", [0, 1.5]);
 lta.offset = [-5, -3]
@@ -78,12 +78,12 @@ lbb.offset = [-5, -3]
 lbb.font = "italic 16px arial";
 bottommatrix.addPlotable(lbb);
 
-var lbu = new Label("v", [1, 2]);
+var lbu = new Label("v", [2, 4]);
 lbu.offset = [-10, 5];
 lbu.font = "bold 16px arial";
 bottomcanvas.addPlotable(lbu)
 
-var lbv = new Label("w", [-2, -4]);
+var lbv = new Label("w", [-1, -2]);
 lbv.offset = [-10, 5];
 lbv.font = "bold 16px arial";
 bottomcanvas.addPlotable(lbv);
@@ -93,40 +93,40 @@ var bb = mkslider([dx, 2 - dx], 0.5, bottommatrix, bottomupdate);
 ba.init(1);
 bb.init(0);
 
-var tcgrid = new Grid([-4, 1, 4], [-4, 1, 4]);
+var tcgrid = new Grid([-10, 1, 10], [-10, 1, 10]);
 topcanvas.addPlotable(tcgrid);
 
 var trgrid = new TGrid([2, 1], [1, 2])
 trgrid.strokeColor = "gray"
 topcanvas.addPlotable(trgrid)
 
-var bcgrid = new Grid([-4, 1, 4], [-4, 1, 4]);
+var bcgrid = new Grid([-10, 1, 10], [-10, 1, 10]);
 bottomcanvas.addPlotable(bcgrid);
 
 var tcaxes = new Axes();
 tcaxes.labels = [
-    [-4, 1, 4],
-    [-4, 1, 4]
+    [-10, 1, 10],
+    [-10, 1, 10]
 ]
 tcaxes.ticks = [
-    [-4, 1, 4],
-    [-4, 1, 4]
+    [-10, 1, 10],
+    [-10, 1, 10]
 ]
 topcanvas.addPlotable(tcaxes);
 
 var bcaxes = new Axes();
 bcaxes.labels = [
-    [-4, 1, 4],
-    [-4, 1, 4]
+    [-10, 1, 10],
+    [-10, 1, 10]
 ]
 bcaxes.ticks = [
-    [-4, 1, 4],
-    [-4, 1, 4]
+    [-10, 1, 10],
+    [-10, 1, 10]
 ]
 bottomcanvas.addPlotable(bcaxes);
 
-var line = new Line([-2, -4], [2, 4])
-line.strokeColor = "gray"
+var line = new Line([-5, -10], [5, 10])
+line.strokeColor = "blue"
 bottomcanvas.addPlotable(line)
 
 var tu = new Vector([2, 1]);
@@ -136,8 +136,8 @@ tv.fillColor = "gray";
 topcanvas.addPlotable(tu);
 topcanvas.addPlotable(tv);
 
-var bu = new Vector([1, 2]);
-var bv = new Vector([-2, -4])
+var bu = new Vector([2, 4]);
+var bv = new Vector([-1, -2])
 bu.fillColor = "gray";
 bv.fillColor = "gray";
 bottomcanvas.addPlotable(bu);
