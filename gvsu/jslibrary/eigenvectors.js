@@ -1,5 +1,5 @@
 var matrix = new Canvas("sliders", [0, 0, 2, 1.5]);
-var canvas = new Canvas("eigenvector", [-10, -10, 10, 10]);
+var canvas = new Canvas("eigenvector", [-12, -12, 12, 12]);
 
 var td_a = document.getElementById("td_a");
 var td_b = document.getElementById("td_b");
@@ -18,9 +18,9 @@ canvas.margins = [5, 5, 5, 5];
 canvas.setUpCoordinates();
 
 var mkslider = function (xr, y) {
-    var s = new Slider(xr, y, [-5, 5], update);
-    s.ticks = [-5, 1, 5]
-    s.labels = [-5, 1, 5]
+    var s = new Slider(xr, y, [-6, 6], update);
+    s.ticks = [-6, 1, 6]
+    s.labels = [-6, 1, 6]
     s.point.style = "box";
     s.point.fillColor = "blue"
     s.point.size = 4;
@@ -87,17 +87,17 @@ label_d.font = "italic 16px arial";
 matrix.addPlotable(label_d);
 
 
-var grid = new Grid([-10, 1, 10], [-10, 1, 10]);
+var grid = new Grid([-12, 1, 12], [-12, 1, 12]);
 canvas.addPlotable(grid);
 
 var axes = new Axes();
 axes.labels = [
-    [-10, 1, 10],
-    [-10, 1, 10]
+    [-12, 1, 12],
+    [-12, 1, 12]
 ]
 axes.ticks = [
-    [-10, 1, 10],
-    [-10, 1, 10]
+    [-12, 1, 12],
+    [-12, 1, 12]
 ]
 canvas.addPlotable(axes);
 
